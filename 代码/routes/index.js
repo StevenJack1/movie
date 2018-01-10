@@ -1,9 +1,30 @@
-var express = require('express');
-var router = express.Router();
+var controllers = require('../controllers');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+module.exports = function (app) {
+    /**
+     *  ========================================================================
+     *  前台
+     *  ========================================================================
+     */
 
-module.exports = router;
+    app.get('/',controllers.user.indexController.getInfo);
+    app.get('/movieInfo',controllers.user.movieInfoController.getInfo);
+    app.get('/allMovie',controllers.user.allMovieController.getInfo);
+
+
+    /**
+     *  ========================================================================
+     *  前台
+     *  ========================================================================
+     */
+
+    app.get('/admin/',controllers.admin.adminInfoController.getInformation);
+
+    app.post('/admin/createInfo',controllers.admin.adminInfoController.createInfo);
+
+    app.post('/admin/updateInfo',controllers.admin.adminInfoController.updateInfo);
+
+    app.post('/admin/deleteInfo',controllers.admin.adminInfoController.deleteInfo)
+
+
+};
