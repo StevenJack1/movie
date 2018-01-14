@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title>电影详情页面</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
 </head>
 <body>
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<div style="margin-left:25vw">
+    <h3><b><%= title%></b> <b style="color:#888888">(<%= year%>)</b></h3>
+    <div class="row">
+        <div class="col-md-12" style="margin-left: -1vw; margin-top:10px;">
+            <div class="col-md-2">
+                <img src="<%= img%> " style="height: 200px;"/>
+            </div>
+            <div class="col-md-4" style="font-size: 110%;margin-left: -3vw">
+                <p>导演：<%= directors%></p>
+                <p>主演：<%= casts%></p>
+                <p>类型：<%= genres%></p>
+                <p>又名：<%= original_title%></p>
+                <p>豆瓣网址：<a href="<%= alt%>"><%= alt%></a></p>
+            </div>
+            <div class="col-md-3" style="border-left: 1px solid #d6cfd2;">
+                <p style="color: #B5B6D8;font-size: 120%">豆瓣评分</p>
+                <p style="font-size: 200%;font-weight: 300"><%= rating%></p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

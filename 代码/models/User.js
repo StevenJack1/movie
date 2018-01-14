@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false, //非空
             primaryKey: true,//主键
-            comment: "用户名"
+            comment: "账号"
         },
         name: {
             type: DataTypes.STRING,
