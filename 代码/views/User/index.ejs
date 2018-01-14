@@ -1,11 +1,203 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+  <!--<head>-->
+    <!--<title><%= title %></title>-->
+    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
+  <!--</head>-->
+  <!--<body>-->
+    <!--<h1><%= title %></h1>-->
+    <!--<p>Welcome to <%= title %></p>-->
+  <!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>首页</title>
+  <script src="/stylesheets/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+  <script src="/stylesheets/js/jquery.carouFredSel-6.2.0-packed.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      $(function() {
+          var $imgs = $('#images .carousel'),
+              $capt = $('#captions .carousel'),
+              $timr = $('#timer');
+
+          $imgs.carouFredSel({
+              circular: false,
+              scroll: {
+                  easing: 'quadratic',
+                  duration: 2,
+                  timeoutDuration: 2500,
+                  onBefore: function( data ) {
+                      $capt.trigger( 'slideTo', [ '.' + data.items.visible.first().attr( 'alt' ) ] );
+                      $timr.stop().animate({
+                          opacity: 0
+                      }, data.scroll.duration);
+                  },
+                  onAfter: function() {
+                      $timr.stop().animate({
+                          opacity: 1
+                      }, 150);
+                  }
+              },
+              auto: {
+                  progress: '#timer'
+              },
+              pagination: {
+                  container: '.pager',
+                  anchorBuilder: function( i ) {
+                      return '<a class="p' + i + '" href="#"></a>';
+                  }
+              }
+          });
+          $capt.carouFredSel({
+              circular: false,
+              auto: false,
+              scroll: {
+                  easing: 'quadratic',
+                  duration: 2
+              }
+          });
+      });
+  </script>
+  <style type="text/css">
+    html, body {
+      height: 100%;
+      padding: 0 auto;
+      margin: 0 auto;
+    }
+    body {
+      background: #442;
+      min-height: 600px;
+    }
+    body * {
+      font-family: Arial, Geneva, SunSans-Regular, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+    }
+
+    #wrapper {
+      box-shadow: 0 0 20px #110;
+      width: 700px;
+      height: 350px;
+      margin: -250px 0 0 -350px;
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    #images {
+      width: 700px;
+      height: 350px;
+    }
+    #images img {
+      display: block;
+      float: left;
+    }
+    #timer,
+    #captions {
+      background: rgba( 0, 0, 0, 0.5 );
+      width: 700px;
+      height: 50px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    #timer {
+      background: rgba( 200, 0, 0, 0.5 );
+    }
+    #captions .carousel > div {
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 52px;
+      text-transform: uppercase;
+      text-indent: 50px;
+      width: 700px;
+      height: 50px;
+      float: left;
+    }
+    .pager {
+      padding: 16px 50px 0 0;
+      float: right;
+    }
+    .pager a {
+      border: 1px solid #fff;
+      border-radius: 10px;
+      display: none;
+      width: 10px;
+      height: 10px;
+      margin: 0 3px;
+    }
+    .pager a:hover {
+      background: rgba( 255, 255, 255, 0.3 );
+    }
+    .pager a.selected {
+      background: #fff;
+    }
+    .cod .pager .p1,
+    .cod .pager .p2,
+    .cod .pager .p3,
+    .gta .pager .p4,
+    .gta .pager .p5,
+    .gta .pager .p6,
+    .mgs .pager .p7,
+    .mgs .pager .p8,
+    .mgs .pager .p9 {
+      display: inline-block;
+    }
+
+
+    #donate-spacer {
+      height: 100%;
+    }
+    #donate {
+      border-top: 1px solid #cc9;
+      width: 750px;
+      padding: 50px 75px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    #donate p, #donate form {
+      margin: 0;
+      float: left;
+    }
+    #donate p {
+      width: 650px;
+      color: #cc9;
+    }
+    #donate form {
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+<div id="wrapper">
+  <div id="images">
+    <div class="carousel">
+      <img src="/stylesheets/imgs/QQ.jpg" alt="cod" width="700" height="350" />
+      <img src="/stylesheets/imgs/cod2.jpg" alt="cod" width="700" height="350" />
+      <img src="/stylesheets/imgs/cod3.jpg" alt="cod" width="700" height="350" />
+    </div>
+  </div>
+  <div id="timer"></div>
+  <div id="captions">
+    <div class="carousel">
+      <div class="cod">Call Of Duty
+        <div class="pager"></div>
+      </div>
+      <div class="gta">Grand Theft Auto
+        <div class="pager"></div>
+      </div>
+      <div class="mgs">Metal Gear Solid
+        <div class="pager"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="text-align:center;clear:both">
+</div>
+</body>
 </html>
