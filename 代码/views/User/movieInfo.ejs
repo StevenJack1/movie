@@ -19,11 +19,44 @@
                 <p>类型：<%= genres%></p>
                 <p>又名：<%= original_title%></p>
                 <p>豆瓣网址：<a href="<%= alt%>"><%= alt%></a></p>
+
+                <div style="margin-top:150px;margin-left:-10vw;">
+                    <div>
+                        <p style="color:#007722;font-size: 20px;">* * * * * *  写评价  * * * * * * </p>
+                        <textarea placeholder="评论......" style="width: 30vw;height: 80px;"></textarea>
+                        <button class="btn btn-default" style="margin-left: 27vw;margin-top:2px;background-color: #3282CE; color:white;">提交</button>
+                    </div>
+
+                    <div style="margin-top: 100px;">
+                        <p style="color:#007722;font-size: 20px;">* * * * * * <%= title%>的剧情简介  * * * * * * </p>
+                        <p>    1949年的法国乡村，音乐家克莱门特（杰勒德•尊诺 饰）到了一间外号叫“塘低”的男子寄宿学校当助理教师。
+                            学校里的学生大部分都是难缠的问题儿童，体罚在这里司空见惯，学校的校长（弗朗西斯•贝尔兰德 饰）只顾自己的前途，残暴高压。</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3" style="border-left: 1px solid #d6cfd2;">
-                <p style="color: #B5B6D8;font-size: 120%">豆瓣评分</p>
-                <p style="font-size: 200%;font-weight: 300"><%= rating%></p>
+            <div class="col-md-3">
+                <div style="border-left: 1px solid #d6cfd2;">
+                    <div style="margin-left: 1vw;">
+                        <p style="color: #B5B6D8;font-size: 120%">豆瓣评分</p>
+                        <p style="font-size: 200%;font-weight: 300"><%= rating%></p>
+                        <p>
+                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
+                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
+                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
+                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
+                            <span class="glyphicon glyphicon-heart-empty" style="color:#FFAC2D;font-size: 20px;"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div style="border-left: 1px solid #d6cfd2;margin-top:190px;">
+                    <div style="margin-left: 1vw;">
+                        <p style="color: #B5B6D8;font-size: 120%">相关推荐</p>
+                    </div>
+                </div>
             </div>
+
+
         </div>
     </div>
 </div>
