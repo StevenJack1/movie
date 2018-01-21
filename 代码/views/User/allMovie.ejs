@@ -112,7 +112,7 @@
     //        }
     //    });
 
-    //显示所有电影
+    //点击分类显示电影
     $(".movClass").click(function () {
         var className = $(this).text();
         if(className !== ""){
@@ -126,46 +126,34 @@
                 'data':data,
                 'success':function (reData) {
                     if(reData){
+                        $(".movie").empty();
                         var len = reData.length;
-                        var str = "";
-                        var intlen = parseInt(len / 4);
-                        var remainder = len % 4;
                         var i = 0;
-                        var flag = 0;
-                        if(remainder > 0){
-                            intlen = intlen + 1;
-                        }
-                        //                    for(var k=0;k<len;k++){
-                        str += "<div class='row"+ i +"' style='width: 66%;height: 400px;margin-left: 17%;margin-top: 5%;'>" ;
-                        if(i === intlen-1){
-                            for(var j=0;j<remainder;j++){
-                                for(i;i<len;){
-                                    var score = reData[i].rating;
-                                    alert(score)
-                                    str += "<div class='col-lg-2 col-md-3 col-sm-3 col-xs-3'>" +
-                                        "<img src='"+ reData[i].image +"' alt='"+ reData[i].title+"'>" +
-                                        "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >"+reData[i].alt+"</a>" +
-                                        "<span style='padding-left: 5%;color: #ff722c;font-size: 20px;'>"+ score[0] +"<span class='point'>."+ score[1] +"</span></span>" +
-                                        "<p class='introduce'>"+ reData[i].description +"</p>" +
-                                        "</div>"
-                                    break;
-                                }
+                        for(var n=0;n<len;n++) {
+                            if(n % 4 === 0){
+                                var framework = "<div class='row"+ i +"' style='width: 66%;height: 350px;margin-left: 17%;ma'></div>" ;
+                                $(".movie").append(framework);
                                 i++;
+                                str ="";
                             }
-                        } else {
-                            for(var m=0;m<4;m++){
-                                for(i;i<len;){
-                                    var score = reData[i].rating;
-                                    str += "<div class='col-lg-2 col-md-3 col-sm-3 col-xs-3'>" +
-                                        "<img src='"+ reData[i].image +"' alt='"+ reData[i].title+"'>" +
-                                        "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >"+reData[i].alt+"</a>" +
-                                        "<span style='padding-left: 5%;color: #ff722c;font-size: 20px;'>"+ score[0] +"<span class='point'>."+ score[1] +"</span></span>" +
-                                        "<p class='introduce'>"+ reData[i].description +"</p>" +
-                                        "</div>"
-                                    break;
-                                }
-                                i++;
+                            var score = reData[n].rating;
+                            score = String(score);
+                            str += "<div class='col-lg-2 col-md-3 col-sm-3 col-xs-3' style='margin-left: 2%;'>" +
+                                "<img src='" + reData[n].image + "' alt='" + reData[n].title + "' style='width:170px;height: 240px;'>";
+                            if (reData[n].title.length > 10) {
+                                str += "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >" + reData[n].title.substring(0, 8) + " ... </a>";
+                            } else {
+                                str += "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >" + reData[n].title + "</a>";
                             }
+                            str += "<span style='position:absolute;right: 19px;color: #ff722c;font-size: 20px;'>" + score[0] + "<span class='point'>." + score[2] + "</span></span>";
+                            if(reData[n].description.length > 12){
+                                str += "<p class='introduce'>"+ reData[n].description.substring(0,11) +"...</p>";
+                            } else {
+                                str += "<p class='introduce'>"+ reData[n].description +"</p>";
+                            }
+                            str += "</div>"
+
+                            $(".row"+(i-1)).empty().append(str);
                         }
                     }
                 }
