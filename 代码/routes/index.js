@@ -11,10 +11,12 @@ module.exports = function (app) {
     app.get('/movieInfo',controllers.user.movieInfoController.getInfo);
     app.get('/allMovie',controllers.user.allMovieController.getInfo);
 
+    app.post('/allMovie/movieList',controllers.user.allMovieController.movieList);
+    app.get('/allMovie/movieList',controllers.user.allMovieController.movieList);
 
     /**
      *  ========================================================================
-     *  后台
+     *  前台
      *  ========================================================================
      */
 
@@ -26,5 +28,7 @@ module.exports = function (app) {
 
     app.post('/admin/deleteInfo',controllers.admin.adminInfoController.deleteInfo)
 
+    //根据电影分类显示电影
+    // app.post('/allMovie',controllers.user.allMovieController.getInfo);
 
 };
