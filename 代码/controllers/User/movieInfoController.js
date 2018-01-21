@@ -6,7 +6,7 @@ var marked = require('marked');             //_.pick导入
 module.exports = {
 
     getInfo: function (req,res,next) {                                      // 查
-        Movie.findById('1').then(function (result) {
+        Movie.findById('1291546').then(function (result) {
             res.render('User/movieInfo',{
                 id: result.id,
                 title: result.title,
@@ -25,6 +25,8 @@ module.exports = {
     searchMovie:function (req, res, next) {
         if(req.method === 'POST'){
             res.send("test");
+        } else if(req.method === 'GET'){
+            res.send("aa");
         }
 
     }

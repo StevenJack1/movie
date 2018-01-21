@@ -16,6 +16,7 @@ module.exports = function (app) {
 
     //搜索电影
     app.post('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
+    app.get('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
     /**
      *  ========================================================================
      *  后台
