@@ -14,9 +14,11 @@ module.exports = function (app) {
     app.post('/allMovie/movieList',controllers.user.allMovieController.movieList);
     app.get('/allMovie/movieList',controllers.user.allMovieController.movieList);
 
+    //搜索电影
+    app.post('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
     /**
      *  ========================================================================
-     *  前台
+     *  后台
      *  ========================================================================
      */
 

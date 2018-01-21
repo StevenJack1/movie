@@ -27,7 +27,6 @@
         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-1 " style="width: 3%;padding: 0;"><a href="#" class="movClass">动画</a></div>
         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-1 " style="width: 3%;padding: 0;"><a href="#" class="movClass">冒险</a></div>
         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-1 " style="width: 3%;padding: 0;"><a href="#" class="movClass">儿童</a></div>
-        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-1 " style="width: 3%;padding: 0;"><a href="#" class="movClass">剧情</a></div>
         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-1 " style="width: 3%;padding: 0;"><a href="#" class="movClass">科幻</a></div>
         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-1 " style="width: 3%;padding: 0;"><a href="#" class="movClass">历史</a></div>
         <div class="col-lg-1 col-md-2 col-sm-2 col-xs-1 " style="width: 3%;padding: 0;"><a href="#" class="movClass">战争</a></div>
@@ -48,69 +47,16 @@
 <script type="application/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-
-        //提前加载全部电影
+        //加载全部电影
         var str = "";
         $.ajax({
             'url':'/allMovie/movieList',
             'type':'GET',
             'success':function (reData) {
-                if(reData){
-                    var len = reData.length;
-                    var i = 0;
-                    for(var n=0;n<len;n++) {
-                        if(n % 4 === 0){
-                            var framework = "<div class='row"+ i +"' style='width: 66%;height: 350px;margin-left: 17%;ma'></div>" ;
-                            $(".movie").append(framework);
-                            i++;
-                            str ="";
-                        }
-                        var score = reData[n].rating;
-                        score = String(score);
-                        str += "<div class='col-lg-2 col-md-3 col-sm-3 col-xs-3' style='margin-left: 2%;'>" +
-                            "<img src='" + reData[n].image + "' alt='" + reData[n].title + "' style='width:170px;height: 240px;'>";
-                        if (reData[n].title.length > 10) {
-                            str += "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >" + reData[n].title.substring(0, 8) + " ... </a>";
-                        } else {
-                            str += "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >" + reData[n].title + "</a>";
-                        }
-                        str += "<span style='position:absolute;right: 19px;color: #ff722c;font-size: 20px;'>" + score[0] + "<span class='point'>." + score[2] + "</span></span>";
-                        if(reData[n].description.length > 12){
-                            str += "<p class='introduce'>"+ reData[n].description.substring(0,11) +"...</p>";
-                        } else {
-                            str += "<p class='introduce'>"+ reData[n].description +"</p>";
-                        }
-                        str += "</div>"
-
-                        $(".row"+(i-1)).empty().append(str);
-                    }
-                }
+                innerFun(reData);
             }
         });
     });
-
-    //搜索电影
-    //    $("#search_button").click(function () {
-    ////        var searh_movie = $("#search_name").val();
-    //        if(searh_movie !== ""){
-    //            var data = {
-    //                className:$("#search_name").val()
-    //            }
-    //            $.ajax({
-    //                'url':'/movieInfo',
-    //                'type':'GET',
-    //                'datatype':'json',
-    //                'data':data,
-    //                'success':function (msg) {
-    //                    if(msg.success){
-    //
-    //                    }
-    //                }
-    //            });
-    //        } else {
-    //            alert("请输入要搜索的电影名称！");
-    //        }
-    //    });
 
     //点击分类显示电影
     $(".movClass").click(function () {
@@ -125,40 +71,85 @@
                 'datatype':'json',
                 'data':data,
                 'success':function (reData) {
-                    if(reData){
-                        $(".movie").empty();
-                        var len = reData.length;
-                        var i = 0;
-                        for(var n=0;n<len;n++) {
-                            if(n % 4 === 0){
-                                var framework = "<div class='row"+ i +"' style='width: 66%;height: 350px;margin-left: 17%;ma'></div>" ;
-                                $(".movie").append(framework);
-                                i++;
-                                str ="";
-                            }
-                            var score = reData[n].rating;
-                            score = String(score);
-                            str += "<div class='col-lg-2 col-md-3 col-sm-3 col-xs-3' style='margin-left: 2%;'>" +
-                                "<img src='" + reData[n].image + "' alt='" + reData[n].title + "' style='width:170px;height: 240px;'>";
-                            if (reData[n].title.length > 10) {
-                                str += "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >" + reData[n].title.substring(0, 8) + " ... </a>";
-                            } else {
-                                str += "<a href='#' style='color: #383838;font-size: 16px;padding-top:5%;' >" + reData[n].title + "</a>";
-                            }
-                            str += "<span style='position:absolute;right: 19px;color: #ff722c;font-size: 20px;'>" + score[0] + "<span class='point'>." + score[2] + "</span></span>";
-                            if(reData[n].description.length > 12){
-                                str += "<p class='introduce'>"+ reData[n].description.substring(0,11) +"...</p>";
-                            } else {
-                                str += "<p class='introduce'>"+ reData[n].description +"</p>";
-                            }
-                            str += "</div>"
-
-                            $(".row"+(i-1)).empty().append(str);
-                        }
-                    }
+                    $(".movie").empty();
+                    innerFun(reData);
                 }
             });
         }
     });
+
+    function innerFun(reData) {
+        if(reData){
+            var len = reData.length;
+            var i = 0;
+            for(var n=0;n<len;n++) {
+                if(n % 4 === 0){
+                    var framework = "<div class='row"+ i +"' style='width: 66%;height: 350px;margin-left: 17%;ma'></div>" ;
+                    $(".movie").append(framework);
+                    i++;
+                    str ="";
+                }
+                var score = reData[n].rating;
+                score = String(score);
+                str += "<div class='col-lg-2 col-md-3 col-sm-3 col-xs-3' style='margin-left: 2%;'>" +
+                    "<img src='" + reData[n].image + "' alt='" + reData[n].title + "' style='width:170px;height: 240px;'>";
+                if (reData[n].title.length > 10) {
+                    str += "<a href='#' class='movieName' style='color: #383838;font-size: 16px;padding-top:5%;'>" + reData[n].title.substring(0, 8) + "...</a>";
+                } else {
+                    str += "<a href='#' class='movieName' style='color: #383838;font-size: 16px;padding-top:5%;'>" + reData[n].title + "</a>";
+                }
+                str += "<span style='position:absolute;right: 19px;color: #ff722c;font-size: 20px;'>" + score[0] + "<span class='point'>." + score[2] + "</span></span>";
+                if(reData[n].description.length > 12){
+                    str += "<p class='introduce'>"+ reData[n].description.substring(0,11) +"...</p>";
+                } else {
+                    str += "<p class='introduce'>"+ reData[n].description +"</p>";
+                }
+                str += "</div>"
+
+                $(".row"+(i-1)).empty().append(str);
+            }
+        }
+    }
+
+    //搜索电影
+    $("#search_button").click(function () {
+        var searh_movie = $("#search_name").val();
+        if(searh_movie !== ""){
+            var data = {
+                movieName:searh_movie
+            }
+            $.ajax({
+                'url':'/movieInfo/searchMovie',
+                'type':'POST',
+                'data':data,
+                'success':function (msg) {
+                    if(msg){
+
+                    }
+                }
+            });
+        } else {
+            alert("请输入要搜索的电影名称！");
+        }
+    });
+
+    //点击电影名称查看电影
+    $('body').on('click', '.movieName', function () {
+       var movieName = $(this).text().replace(/(^\s*)|(\s*$)/g, "");
+       if(movieName){
+           var data = {
+               movieName: movieName
+           }
+            $.ajax({
+                'url': '/movieInfo/searchMovie',
+                'type': 'POST',
+                'data': data,
+                'success': function (result) {
+
+                }
+            })
+       }
+    });
+
 </script>
 </html>

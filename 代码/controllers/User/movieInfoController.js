@@ -1,5 +1,7 @@
 var { sequelize,Sequelize} = require('../../config/db');
 var Movie = sequelize.import('../../models/Movie');
+var _       = require('lodash');            //_.pick导入
+var marked = require('marked');             //_.pick导入
 
 module.exports = {
 
@@ -20,6 +22,12 @@ module.exports = {
         }).catch(next)
     },
 
+    searchMovie:function (req, res, next) {
+        if(req.method === 'POST'){
+            res.send("test");
+        }
+
+    }
 //     createInfo:function (req, res, next) {
 //         Movie.create( {
 //             id: '1',
