@@ -1,0 +1,88 @@
+.headbar{
+    height: auto;
+}
+.headbar h1{
+    padding: 0 0 15px 0;
+}
+.tags {
+    overflow: hidden;
+    zoom: 1;
+}
+.tag-list{
+    width: auto;
+    display: inline;
+    padding-right: 5px;
+}
+.gaia .tags .activate, .gaia .sub-tags .activate {
+    background: #4b8ccb;
+    color: #fff;
+}
+.activate{
+    background: #4b8ccb;
+    color: #fff;
+}
+.tag-list label{
+    display: inline-block;
+    zoom: 1;
+    cursor: pointer;
+    padding: 1px 10px;
+    margin: 0 3px 5px 0;
+    color: #666;
+    font-size: 14px;
+    border-radius: 2px;
+    background: none;
+}
+.tag-list label input{
+    display: none;
+}
+.custom-frm {
+    height: 26px;
+    line-height: 26px;
+    width: 170px;
+    display: none;
+    position: relative;
+    top: -2px;
+}
+.more {
+    margin-bottom: 32px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    color: #336699;
+    clear: both;
+    width: 94%;
+}
+.item{
+    margin-bottom: 30px;
+}
+.item img {
+    width: 100px;
+    height: 148px;
+}
+.tool {
+    width: 94%;
+    margin-top: 15px;
+    padding: 0 0 15px 0;
+    overflow: hidden;
+    font-size: 13px;
+    color: #666;
+    zoom: 1;
+}
+.sort {
+    float: left;
+    padding-left: 2px;
+}
+.sort label {
+    margin-right: 20px;
+}
+.tool input {
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+}
+.check {
+    float: right;
+}

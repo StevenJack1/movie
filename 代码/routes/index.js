@@ -7,15 +7,22 @@ module.exports = function (app) {
      *  ========================================================================
      */
 
+    // 首页
     app.get('/',controllers.user.indexController.getInfo);
-    app.get('/movieInfo',controllers.user.movieInfoController.getInfo);
-    app.get('/allMovie',controllers.user.allMovieController.getInfo);
 
+    //
+    app.get('/find/:genere',controllers.user.indexController.getMovieInfo);
+
+
+
+    // 所有电影
+	app.get('/allMovie',controllers.user.allMovieController.getInfo);
     app.post('/allMovie/movieList',controllers.user.allMovieController.movieList);
     app.get('/allMovie/movieList',controllers.user.allMovieController.movieList);
 
     //搜索电影
-    app.post('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
+	app.get('/movieInfo',controllers.user.movieInfoController.getInfo);
+	app.post('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
     app.get('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
     /**
      *  ========================================================================

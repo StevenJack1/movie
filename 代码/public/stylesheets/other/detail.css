@@ -1,0 +1,98 @@
+.infor{
+    width: 100%;
+}
+h1 {
+    word-wrap: break-word;
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #494949;
+    margin: 0;
+    padding: 0 0 15px 0;
+    line-height: 1.1;
+}
+h1 .year {
+    color: #888;
+    display: inline-block;
+    zoom: 1;
+}
+.detail{
+    margin-top: 50px;
+    height: 280px;
+    width: 94%;
+}
+.detail-left{
+    float: left;
+    margin-right: 15px;
+}
+.detail-right{
+    float: left;
+}
+.infor{
+    clear: both;
+    width: 94%;
+}
+.infor h2, .hotMovie h2, .mv-comment h2{
+    color: #007722;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin: 10px auto;
+}
+.recommend{
+    margin-top: 35px;
+}
+.mv-comment{
+    float: left;
+    clear: both;
+    padding: 15px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+.judge{
+    width: 94%;
+    bottom: 50px;
+    margin-bottom: 50px;
+    float: left;
+    margin-top: 10px;
+}
+.allcomment{
+    overflow: hidden;
+    line-height: 1.5;
+    color: #494949;
+    word-wrap: break-word;
+}
+.comment-vote {
+    float: right;
+}
+.allcomment h3 {
+    background: none;
+    font-size: 13px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    color: #494949;
+    margin-bottom: 5px;
+}
+.comment_btn{
+    color: #C65E24;
+    background-color: rgba(198,94,36,0.15);
+    height: auto;
+    padding: 7px 12px;
+    line-height: 13px;
+    float: right;
+    margin-top: 10px;
+}
+.tab-hd .on:link, .tab-hd .on:visited, .tab-hd .on:hover, .tab-hd .on:active {
+    background: none;
+    color: #111;
+}
+.tab-hd{
+    border-bottom: 1px solid #eaeaea;
+    display: inline-block;
+    padding: 20px 0;
+    width: 100%;
+    margin: -10px 0 20px 0;
+}
+.addStyle{
+    color: #666666;
+}
