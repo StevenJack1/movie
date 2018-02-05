@@ -5,6 +5,8 @@ var { sequelize } = require("../config/db");
 var User = sequelize.import("./User");
 var Comment = sequelize.import("./Comment");
 var Movie = sequelize.import("./Movie");
+var MovieCategory = sequelize.import("./MovieCategory");
+
 
 //建立模型之间关联关系
 User.hasMany(Comment, { foreignKey: 'user_id' });

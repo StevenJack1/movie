@@ -41,7 +41,11 @@ module.exports = function (app) {
 
     app.post('/admin/updateInfo',controllers.admin.adminInfoController.updateInfo);
 
-    app.post('/admin/deleteInfo',controllers.admin.adminInfoController.deleteInfo)
+    app.post('/admin/deleteInfo',controllers.admin.adminInfoController.deleteInfo);
+
+    // 获取电影分类
+	app.get('/admin/getMovieCategoryList',controllers.admin.movieCategoryController.getInfo);
+
 
 
 };
