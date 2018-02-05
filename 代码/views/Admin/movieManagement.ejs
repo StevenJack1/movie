@@ -26,7 +26,7 @@
                             <span>电影名称：</span>
                             <input id="searchFormUserName" name="userName" class="form-control input-sm" type="text" />
                         </div>
-                        <button class="btn btn-primary btn-outline btn-sm "><i class="fa fa-search"></i> 查询</button>
+                        <button class="btn btn-primary btn-outline btn-sm " id="search"><i class="fa fa-search"></i> 查询</button>
                     </form>
                     <br>
                 </div>
@@ -321,7 +321,7 @@
 			var movieInfoId = $(this).attr("movieInfoId");
 			swal({
 					title: "确定删除吗？",
-					text: "你将无法恢复该用户！",
+					text: "你将无法恢复！",
 					type: "warning",
 					showCancelButton: true,
 					confirmButtonColor: "#DD6B55",
@@ -330,6 +330,7 @@
 				},
 				function(){
 					Delete("/admin/movie/delete/"+ movieInfoId);
+					flushCurrent();
 				});
 		});
 	}
@@ -373,7 +374,7 @@
 	       $("#addModelCancelButton").click();
        });
 	});
-
+    // 刷新本页
 	var flushCurrent = function () {
 		$.ajax({
 			type: 'GET',
@@ -387,5 +388,9 @@
 		});
 	}
 
+	$("#search").click(function () {
+       var searchFormUserName = $("#searchFormUserName").val();
+        alert("本功能暂时没写");
+	});
 
 </script>

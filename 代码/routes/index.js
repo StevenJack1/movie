@@ -33,9 +33,8 @@ module.exports = function (app) {
      *  ========================================================================
      */
 
-
+	// 首页
 	app.get('/admin',controllers.admin.adminInfoController.getInformation);
-
 
 
 
@@ -52,10 +51,15 @@ module.exports = function (app) {
 
 
 
+
 	// 获取电影分类页面
 	app.get('/admin/movieCategory',controllers.admin.movieCategoryManagementController.getInfo);
 	// 获取电影分类列表
 	app.get('/admin/movieCategory/getMovieCategoryList',controllers.admin.movieCategoryManagementController.getMovieCategoryList);
+	// 删除电影分类
+	app.get('/admin/movieCategory/deleteById/:categoryId',controllers.admin.movieCategoryManagementController.deleteById);
+	// 添加电影分类
+	app.post('/admin/movieCategory/add/:category',controllers.admin.movieCategoryManagementController.addInfo);
 
 
 

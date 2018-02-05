@@ -1,0 +1,191 @@
+<style>
+    .more {
+        margin-bottom: 32px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+        background-color: #f5f5f5;
+        color: #336699;
+        clear: both;
+        width: 100%;
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>领域管理</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="panel-body">
+                        <button type="button" class="btn btn-primary waves-effect waves-light m-b-5" data-toggle="modal"
+                                data-target=".add-charge-category">添加电影类别
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>电影类别</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="fieldList">
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <div class="more" id="showOther">加载更多</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--弹窗 新建罪名类别-->
+<div style="display: none;" aria-hidden="true" aria-labelledby="myLargeModalLabel" role="dialog" tabindex="-1"
+     class="modal fade add-charge-category">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!--标题-->
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h3 id="full-width-modalLabel" class="modal-title">新建电影类别</h3>
+            </div>
+            <!--内容-->
+            <div class="modal-body">
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">电影类别</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="请输入电影类别" name="projectCategory"
+                                   id="category">
+                        </div>
+                    </div>
+                    <input style='display:none'/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default waves-effect" type="button"
+                        id="categoryCancelButton">
+                    取消
+                </button>
+                <button data-dismiss="modal" class="btn btn-primary waves-effect waves-light" type="button"
+                        id="categoryCreateButton">
+                    确认
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+	/**
+	 * 分类算法
+	 */
+	$(document).ready(function () {
+		var counter = 0; /*计数器*/
+		var pageStart = 0; /*offset*/
+		var pageSize = 10; /*size*/
+
+		loadMovieList(pageStart, pageSize);
+
+		/*监听加载更多*/
+		$("#showOther").click(function () {
+			counter ++;
+			pageStart = counter * pageSize;
+
+			loadMovieList(pageStart, pageSize);
+		});
+	});
+
+	/**
+	 * 电影分类显示
+	 */
+	function loadMovieList(offset,size) {
+		var success = function (data) {
+			var sum = data.length;        // 获取总长度
+			if (sum - offset < size){
+				size = sum - offset;
+			}
+			for (var i = offset;i < (offset + size);i++){
+				$("#fieldList").append(`
+                       <tr>
+                            <td><a href="#">`+ data[i].category +`</a></td>
+                            <td>
+                                <a href="#" categoryId="`+ data[i].id +`" class="btn  btn-danger btn-xs deleteButton"><i class="fa fa-trash"></i> 删除</a>
+                            </td>
+                        </tr>
+                `);
+			}
+			if ( (offset + size) >= sum){
+				$("#showOther").hide();
+			}else{
+				$("#showOther").show();
+			}
+		};
+		Get("/admin/movieCategory/getMovieCategoryList",success);
+
+		$(".deleteButton").click(function () {
+			var categoryId = $(this).attr("categoryId");
+			swal({
+					title: "确定删除吗？",
+					text: "你将无法恢复！",
+					type: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "确定删除！",
+					closeOnConfirm: false
+				},
+				function(){
+					Delete("/admin/movieCategory/deleteById/"+ categoryId);
+					flushCurrent();
+				});
+		});
+	}
+
+	/**
+     * 给添加电影类别点击事件
+	 */
+	$("#categoryCreateButton").click(function () {
+        var category = $("#category").val();
+	    $.ajax({
+		    type: 'POST',
+		    url: "/admin/movieCategory/add/" + category,
+		    success: function (msg) {
+			    swal({
+				    title: "添加成功",
+				    text: "添加成功",
+				    type: "success",
+				    confirmButtonText: "知道了"
+			    });
+		    }
+	    });
+    });
+
+	var flushCurrent = function () {
+		$.ajax({
+			type: 'GET',
+			url: "/admin/movieCategory",
+			success: function (msg) {
+				$.ajaxSetup({
+					async: false
+				});
+				$("#mainPage").empty().append(msg);
+			}
+		});
+	}
+
+</script>
