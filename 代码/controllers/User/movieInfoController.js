@@ -1,10 +1,14 @@
 var { sequelize,Sequelize} = require('../../config/db');
 var Movie = sequelize.import('../../models/Movie');
-var _       = require('lodash');            //_.pick导入
-var marked = require('marked');             //_.pick导入
 
 module.exports = {
 
+	/**
+	 * 返回页面并根据Id返回数据
+	 * @param req
+	 * @param res
+	 * @param next
+	 */
     getInfo: function (req,res,next) {
 	    var movieInfoId = req.params.movieInfoId;
 	    Movie.findById(movieInfoId).then(function (result) {
@@ -23,7 +27,12 @@ module.exports = {
 	    })
 
     },
-
+	/**
+	 * 根据电影的id和剧情来获取推荐电影
+	 * @param req
+	 * @param res
+	 * @param next
+	 */
 	getRecommendMovieList:function (req, res, next) {
 		var movieInfoId = req.params.movieInfoId;
         Movie.findById(movieInfoId).then(function (result) {

@@ -123,9 +123,6 @@
                 <label>
                     <input type="radio" name="sort" value="year" onclick="loadPage()">按时间排序
                 </label>
-                <label>
-                    <input type="radio" name="sort" value="" onclick="loadPage()">按评价排序
-                </label>
             </div>
 
             <div class="check">
@@ -190,7 +187,9 @@
 		    loadMovieList(pageStart, pageSize);
 	    });
     });
-
+    /**
+     * 调用电影信息
+     */
     function loadPage() {
 	    $(".movieInfoList").empty();
 	    counter = 0;
@@ -199,7 +198,6 @@
 	    loadMovieList(pageStart, pageSize);
 
     };
-
     /**
      * 根据关键词和排序方式排序显示
      */
@@ -210,11 +208,9 @@
 
 	    var success = function (data) {
 	    	var sum = data.length;        // 获取总长度
-
             if (sum - offset < size){
                 size = sum - offset;
             }
-
             for (var i = offset;i < (offset + size);i++){
                 $(".movieInfoList").append(`
                      <div class="item">
@@ -234,7 +230,6 @@
 		    }else{
 			    $(".showOther").show();
 		    }
-//		    alert(size)
 	    };
 	    Get("/allMovie/getInfo/" + genre + "/" + other,success);
     }
