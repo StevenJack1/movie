@@ -19,7 +19,11 @@ module.exports = {
 	 * @param next
 	 */
 	getAll: function (req, res, next) {
-		Movie.findAll().then(function (result) {
+		Movie.findAll({
+			order: [
+				['id','DESC']
+			]
+		}).then(function (result) {
 			res.send(result);
 		})
 	},

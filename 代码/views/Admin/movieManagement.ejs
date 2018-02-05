@@ -260,7 +260,6 @@
                             <td><a href="#">`+ data[i].casts +`</a></td>
                             <td><a href="#">`+ data[i].genres +`</a></td>
                             <td>
-                                <a href="#" movieInfoId="`+ data[i].id +`" class="btn btn-success btn-xs modifyButton"><i class="fa fa-edit"></i> 修改</a>
                                 <a href="#" movieInfoId="`+ data[i].id +`" class="btn  btn-danger btn-xs deleteButton"><i class="fa fa-trash"></i> 删除</a>
                             </td>
                         </tr>
@@ -274,49 +273,6 @@
 		};
 		Get("/admin/movie/getAll",success);
 
-		$(".modifyButton").click(function () {
-			var movieInfoId = $(this).attr("movieInfoId");
-			$("#modifyModel").modal("show");
-
-			$("#modifyModelCommitButton").click(function () {
-
-
-				var title = $("#modifyTitle").val();
-				var original_title = $("#modifyOriginal_title").val();
-				var image = $("#modifyImage").val();
-				var directors = $("#modifyDirectors").val();
-				var genres = $("#modifyGenres").val();
-				var year = $("#modifyYear").val();
-				var casts = $("#modifyCasts").val();
-
-				$.ajax({
-					url: "/admin/movie/modifyMovie/" + movieInfoId + "/" + title + "/" + original_title + "/" + image + "/"
-					+ directors + "/" + genres + "/" + year + "/" + casts,
-					type:"GET",
-					contentType: "application/json",
-					success: function () {
-						swal({
-							title: "修改成功",
-							text: "修改成功",
-							type: "success",
-							confirmButtonText: "知道了"
-						});
-					},
-					error: function (XMLHttpRequest, textStatus, errorThrown) {
-						swal({
-							title: "出错了！",
-							text: "错误信息" + XMLHttpRequest.status,
-							type: "error",
-							confirmButtonText: "知道了"
-						});
-					}
-				});
-				$("#modifyModelCancelButton").click();
-			});
-
-
-
-		});
 		$(".deleteButton").click(function () {
 			var movieInfoId = $(this).attr("movieInfoId");
 			swal({
@@ -351,22 +307,13 @@
 	       $.ajax({
 		       url: "/admin/movie/createMovie/" + title + "/" + original_title + "/" + image + "/"
                     + directors + "/" + genres + "/" + year + "/" + casts,
-		       type:"GET",
+		       type:"POST",
 		       contentType: "application/json",
 		       success: function () {
 			       swal({
 				       title: "添加成功",
 				       text: "添加成功",
 				       type: "success",
-				       confirmButtonText: "知道了"
-			       });
-			       flushCurrent();
-		       },
-		       error: function (XMLHttpRequest, textStatus, errorThrown) {
-			       swal({
-				       title: "出错了！",
-				       text: "错误信息" + XMLHttpRequest.status,
-				       type: "error",
 				       confirmButtonText: "知道了"
 			       });
 		       }

@@ -10,7 +10,11 @@ module.exports = {
 	 * @param next
 	 */
 	getMovieCategoryList: function (req,res,next) {
-		MovieCategory.findAll().then(function (result) {
+		MovieCategory.findAll({
+			order: [
+				['id','DESC']
+			]
+		}).then(function (result) {
 			res.send(result);
 		}).catch(next);
 	},
