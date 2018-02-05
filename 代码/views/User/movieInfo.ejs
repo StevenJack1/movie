@@ -1,64 +1,302 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>电影详情页面</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>思沃影院</title>
+    <link rel="stylesheet" href="/stylesheets/other/style.css">
+    <link rel="stylesheet" href="/stylesheets/other/detail.css">
+    <script src="/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/app.js"></script>
 </head>
+<style>
+    .imageSize {
+        height: 140px;
+        width: 100px;
+    }
+</style>
+
 <body>
-<div style="margin-left:25vw">
-    <h3><b><%= title%></b> <b style="color:#888888">(<%= year%>)</b></h3>
-    <div class="row">
-        <div class="col-md-12" style="margin-left: -1vw; margin-top:10px;">
-            <div class="col-md-2">
-                <img src="<%= img%> " style="height: 200px;"/>
+<div class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">思沃影院</a>
+        </div>
+        <div class="navbar-input">
+            <input class="form-control" type="text" placeholder="搜索电影、电视剧、综艺、影人">
+            <input class="form-sub" type="submit" value="搜索">
+        </div>
+    </div>
+    <hr style="clear: both;border: 1px solid #e5ebe4">
+    <div class="nav-second">
+        <ul>
+            <li><a href="javascript:void(0)">影讯&购票</a></li>
+            <li><a href="javascript:void(0)">选电影</a></li>
+            <li><a href="javascript:void(0)">电视剧</a></li>
+            <li><a href="javascript:void(0)">排行榜</a></li>
+            <li><a href="javascript:void(0)">分类</a></li>
+            <li><a href="javascript:void(0)">影评</a></li>
+            <li><a href="javascript:void(0)">2017年度榜单</a></li>
+            <li><a href="javascript:void(0)">2017观影报告</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div class="detail" id="movieInfoId" movieInfoId = '<%= id %>'>
+        <div class="mv-title">
+            <h1><%= title %><span class="year">(<%= year %>)</span></h1>
+        </div>
+        <div class="detail-left">
+            <img src="<%= image %>" style="height: 160px;width: 130px;">
+        </div>
+        <div class="detail-right">
+            <span>
+                <span class="addStyle"> 导演:</span>
+                <a href="javascript:void(0)"><%= directors %></a>
+            </span>
+            <br>
+            <span>
+                <span class="addStyle">主演:</span>
+                <a href="javascript:void(0)"><%= casts%></a>
+            </span>
+            <br>
+            <span>
+                <span class="addStyle">类型:</span>
+                <a href="javascript:void(0)"> <%= genres %></a>
+            </span>
+            <br>
+            <span>
+                <span class="addStyle">上映日期:</span>
+                <%= year %>
+            </span>
+            <br>
+            <span>
+                <span class="addStyle">又名:</span>
+                    <%= original_title %>
+            </span>
+            <br>
+            <span>
+                <span class="addStyle">豆瓣链接:</span>
+                <a href="<%= alt %>"> <%= alt %></a>
+            </span>
+            <br>
+            <span>
+                <span class="addStyle">评分:</span>
+                <%= rating %>
+            </span>
+        </div>
+    </div>
+
+    <div class="infor">
+        <h2>
+            <%= title %>剧情简介
+            · · · · · ·
+        </h2>
+        <div>
+            <span>
+            　　20世纪40年代末，小有成就的青年银行家安迪（蒂姆·罗宾斯 Tim Robbins 饰）因涉嫌杀害妻子及她的情人而锒铛入狱。
+                <br>在这座名为肖申克的监狱内，希望似乎虚无缥缈，终身监禁的惩罚无疑注定了安迪接下来灰暗绝望的人生。未过多久，安迪
+                <br>尝试接近囚犯中颇有声望的瑞德（摩根·弗里曼 Morgan Freeman 饰），请求对方帮自己搞来小锤子。以此为契机，二人逐渐
+                <br>熟稔，安迪也仿佛在鱼龙混杂、罪恶横生、黑白混淆的牢狱中找到属于自己的求生之道。他利用自身的专业知识，帮助监狱
+                <br>管理层逃税、洗黑钱，同时凭借与瑞德的交往在犯人中间也渐渐受到礼遇。表面看来，他已如瑞德那样对那堵高墙从憎恨转变为
+                <br>处之泰然，但是对自由的渴望仍促使他朝着心中的希望和目标前进。而关于其罪行的真相，似乎更使这一切朝前推进了一步……
+　　              本片根据著名作家斯蒂芬·金（Stephen Edwin King）的原著改编。
+            </span>
+        </div>
+    </div>
+
+    <div class="recommend">
+        <div class="hotMovie">
+            <h2>
+                喜欢这部电影的人还喜欢
+                · · · · · ·
+            </h2>
+            <div id="recommendMovieList">
+
             </div>
-            <div class="col-md-4" style="font-size: 110%;margin-left: -3vw">
-                <p>导演：<%= directors%></p>
-                <p>主演：<%= casts%></p>
-                <p>类型：<%= genres%></p>
-                <p>又名：<%= original_title%></p>
-                <p>豆瓣网址：<a href="<%= alt%>"><%= alt%></a></p>
-
-                <div style="margin-top:150px;margin-left:-10vw;">
-                    <div>
-                        <p style="color:#007722;font-size: 20px;">* * * * * *  写评价  * * * * * * </p>
-                        <textarea placeholder="评论......" style="width: 30vw;height: 80px;"></textarea>
-                        <button class="btn btn-default" style="margin-left: 27vw;margin-top:2px;background-color: #3282CE; color:white;">提交</button>
-                    </div>
-
-                    <div style="margin-top: 100px;">
-                        <p style="color:#007722;font-size: 20px;">* * * * * * <%= title%>的剧情简介  * * * * * * </p>
-                        <p>    1949年的法国乡村，音乐家克莱门特（杰勒德•尊诺 饰）到了一间外号叫“塘低”的男子寄宿学校当助理教师。
-                            学校里的学生大部分都是难缠的问题儿童，体罚在这里司空见惯，学校的校长（弗朗西斯•贝尔兰德 饰）只顾自己的前途，残暴高压。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div style="border-left: 1px solid #d6cfd2;">
-                    <div style="margin-left: 1vw;">
-                        <p style="color: #B5B6D8;font-size: 120%">豆瓣评分</p>
-                        <p style="font-size: 200%;font-weight: 300"><%= rating%></p>
-                        <p>
-                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
-                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
-                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
-                            <span class="glyphicon glyphicon-heart" style="color:#FFAC2D;font-size: 20px;"></span>
-                            <span class="glyphicon glyphicon-heart-empty" style="color:#FFAC2D;font-size: 20px;"></span>
-                        </p>
-                    </div>
-                </div>
-
-                <div style="border-left: 1px solid #d6cfd2;margin-top:190px;">
-                    <div style="margin-left: 1vw;">
-                        <p style="color: #B5B6D8;font-size: 120%">相关推荐</p>
-                    </div>
-                </div>
-            </div>
-
 
         </div>
     </div>
+
+    <div class="judge">
+
+        <div class="mv-comment">
+            <a class="comment_btn">
+                <span>我要写短评</span>
+            </a>
+            <h2>
+                <%= title %>的短评
+                · · · · · ·
+                <a href="javascript:void(0)">( 全部 41317 条 )</a>
+            </h2>
+            <div class="tab-hd">
+                <a id="hot-comments-tab" href="javascript:void(0)" data-id="hot" class="on">热门</a>&nbsp;/&nbsp;
+                <a id="new-comments-tab" href="javascript:void(0)" data-id="new">最新</a>&nbsp;/&nbsp;
+                <a id="following-comments-tab" href="javascript:void(0)" data-id="following" class="j a_show_login">好友</a>
+            </div>
+            <div>
+                <div class="allcomment">
+                    <h3>
+                    <span class="comment-vote">
+                        <span class="votes">491</span>
+                        <input type="hidden">
+                        <a href="javascript:void(0)">回应</a>
+                    </span>
+                        <span class="comment-info">
+                        <a href="javascript:void(0)">中原狮子王</a>
+                            <span>看过</span>
+                            <span></span>
+                        <span>2007-09-15 22:59:08</span>
+                    </span>
+                    </h3>
+                    <p class="">
+                        斯德哥尔摩综合症（Stockholm syndrome），斯德哥尔摩效应，又称斯德哥尔摩症候群或者称为人质情结或人质综合症，
+                        是指犯罪的被害者对于犯罪者产生情感，甚至反过来帮助犯罪者的一种情结。
+                        这个情感造成被害人对加害人产生好感、依赖心、甚至协助加害人。  　　
+                        1973年8月23日... <a href="javascript:void(0)">(展开)</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mv-comment">
+            <h2>
+            </h2>
+            <div>
+                <div class="allcomment">
+                    <h3>
+                    <span class="comment-vote">
+                        <span class="votes">708</span>
+                        <input type="hidden">
+                        <a href="javascript:void(0)">回应</a>
+                    </span>
+                        <span class="comment-info">
+                        <a href="javascript:void(0)">大头绿豆</a>
+                            <span>看过</span>
+                            <span></span>
+                        <span>2005-05-12 20:44:13</span>
+                    </span>
+                    </h3>
+                    <p class="">
+                        距离斯蒂芬·金（Stephen King）和德拉邦特（Frank Darabont）们缔造这部伟大的作品已经有十年了。
+                        我知道美好的东西想必大家都能感受，但是很抱歉，我的聒噪仍将一如既往。
+                        在我眼里，肖申克的救赎与信念、自由和友谊有关。 ［1］信 念 瑞德（Red）说，希望是危险的东西，
+                        是精... <a href="javascript:void(0)">(展开)</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mv-comment">
+            <h2>
+            </h2>
+            <div>
+                <div class="allcomment">
+                    <h3>
+                    <span class="comment-vote">
+                        <span class="votes">467</span>
+                        <input type="hidden">
+                        <a href="javascript:void(0)">回应</a>
+                    </span>
+                        <span class="comment-info">
+                        <a href="javascript:void(0)">隱居雲上</a>
+                            <span>看过</span>
+                            <span></span>
+                        <span>2005-07-12 11:23:39</span>
+                    </span>
+                    </h3>
+                    <p class="">
+
+                        周末看了一部美国影片《肖申克的救赎》（《The Shawshank Redemption》） 讲的是一位因冤案入狱的年轻银行家在牢中如何追寻自由的故事。 不同的人看同样的影片可能都有不同的感受。
+                        对于目前无力改变现状的我，看完这部影片后最深的感受就是：才华、毅力两样，
+                        是任何人在任何境... <a href="javascript:void(0)">(展开)</a>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mv-comment">
+            <h2>
+            </h2>
+            <div>
+                <div class="allcomment">
+                    <h3>
+                    <span class="comment-vote">
+                        <span class="votes">170</span>
+                        <input type="hidden">
+                        <a href="javascript:void(0)">回应</a>
+                    </span>
+                        <span class="comment-info">
+                        <a href="javascript:void(0)">蓑笠翁</a>
+                            <span>看过</span>
+                            <span></span>
+                        <span>2005-09-25 16:27:41</span>
+                    </span>
+                    </h3>
+                    <p class="">
+
+                        现在好象比较时兴将人分为体制内和体制外的人,体制外的人通常有某种优越感,似乎自己的人格才是独立的.可实际上,
+                        真正愿意做体制外的人还是很少的,而且是很痛苦的.
+                        余杰北大硕士毕业后差一点进了他想进的国家图书馆作一个体制内的人,
+                        可由于他写了一些比较反体制的文章,最后还是被... <a href="javascript:void(0)">(展开)</a>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="nav-footer">
+    <div id="footer">
+        <div class="footer-extra"></div>
+
+        <span id="icp" class="fleft gray-link">
+                © 2018.1－2018.2, all rights reserved "哦"小分队
+            </span>
+
+        <a href="https://www.douban.com/hnypt/variformcyst.py" style="display: none;"></a>
+
+        <span class="fright">
+            <a href="https://www.douban.com/about">关于"哦"小分队</a>
+            · <a href="https://www.douban.com/about?topic=contactus">联系我们</a>
+            · <a href="https://www.douban.com/about?policy=disclaimer">免责声明</a>
+
+            · <a href="https://help.douban.com/?app=movie" target="_blank">帮助中心</a>
+            · <a href="https://www.douban.com/doubanapp/">移动应用</a>
+        </span>
+    </div>
 </div>
 </body>
+
+
+
+<script>
+    $(document).ready(function () {
+        var movieInfoId = $("#movieInfoId").attr("movieInfoId");
+        var success = function (data) {
+            $("#recommendMovieList").empty();
+
+            data.forEach(function (e) {
+	            $("#recommendMovieList").append(`
+                    <div class="item">
+                        <a href="/movieInfo/`+ e.id +`">
+                            <img src="`+ e.image +`" class="imageSize">
+                            <h4><a href="/movieInfo/`+ e.id +`"> `+ e.title +` </a></h4>
+                        </a>
+                    </div>
+                `);
+            });
+
+        };
+        Get("/movieInfo/getRecommendMovieList/" + movieInfoId , success);
+    });
+
+</script>
+
 </html>

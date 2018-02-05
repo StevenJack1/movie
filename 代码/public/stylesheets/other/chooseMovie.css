@@ -27,10 +27,10 @@
     cursor: pointer;
     padding: 1px 10px;
     margin: 0 3px 5px 0;
-    color: #666;
+    /*color: #666;*/
     font-size: 14px;
     border-radius: 2px;
-    background: none;
+    /*background: none;*/
 }
 .tag-list label input{
     display: none;
@@ -59,8 +59,8 @@
     margin-bottom: 30px;
 }
 .item img {
-    width: 100px;
-    height: 148px;
+    width: 135px;
+    height: 170px;
 }
 .tool {
     width: 94%;

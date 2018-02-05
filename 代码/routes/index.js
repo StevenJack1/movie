@@ -9,21 +9,23 @@ module.exports = function (app) {
 
     // 首页
     app.get('/',controllers.user.indexController.getInfo);
-
-    //
+    // 模糊查询电影分类信息
     app.get('/find/:genere',controllers.user.indexController.getMovieInfo);
 
 
 
-    // 所有电影
+    // 所有电影页面
 	app.get('/allMovie',controllers.user.allMovieController.getInfo);
-    app.post('/allMovie/movieList',controllers.user.allMovieController.movieList);
-    app.get('/allMovie/movieList',controllers.user.allMovieController.movieList);
+	app.get('/allMovie/getInfo/:genere/:other',controllers.user.allMovieController.getAll);
 
-    //搜索电影
-	app.get('/movieInfo',controllers.user.movieInfoController.getInfo);
-	app.post('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
-    app.get('/movieInfo/searchMovie', controllers.user.movieInfoController.searchMovie);
+
+    // 电影详情页面
+	app.get('/movieInfo/:movieInfoId',controllers.user.movieInfoController.getInfo);
+	// 获取推荐电影列表
+	app.get('/movieInfo/getRecommendMovieList/:movieInfoId',controllers.user.movieInfoController.getRecommendMovieList);
+
+
+
     /**
      *  ========================================================================
      *  后台
@@ -38,7 +40,5 @@ module.exports = function (app) {
 
     app.post('/admin/deleteInfo',controllers.admin.adminInfoController.deleteInfo)
 
-    //根据电影分类显示电影
-    // app.post('/allMovie',controllers.user.allMovieController.getInfo);
 
 };

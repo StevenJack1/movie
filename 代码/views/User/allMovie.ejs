@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="/stylesheets/other/chooseMovie.css">
     <script src="/assets/js/jquery-2.1.1.min.js"></script>
     <script src="/js/app.js"></script>
+
 </head>
 
 <style>
-    .imageSize {
-        height: 140px;
-        width: 120px;
+    .fontBackgroundColor {
+        background: #4b8ccb;
+        color: #ffffff;
     }
 </style>
 
@@ -51,73 +52,59 @@
             <h1>选电影</h1>
             <div class="tags">
                 <div class="tag-list">
-                    <label class="activate" style="background: #4b8ccb;color: #ffffff;">
-                        热门
-                        <input type="radio" name="tag" value="热门" checked="checked">
+                    <label class="a1 fontBackgroundColor">
+                        <input type="radio" name="tag" value="剧情" checked="checked" onclick="loadPage()">剧情
                     </label>
-                    <label>
-                        最新
-                        <input type="radio" name="tag" value="最新">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="家庭" onclick="loadPage()">家庭
                     </label>
-                    <label>
-                        经典
-                        <input type="radio" name="tag" value="经典">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="奇幻" onclick="loadPage()">奇幻
                     </label>
-                    <label>
-                        可播放
-                        <input type="radio" name="tag" value="可播放">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="爱情" onclick="loadPage()">爱情
                     </label>
-                    <label>
-                        豆瓣高分
-                        <input type="radio" name="tag" value="豆瓣高分">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="动画" onclick="loadPage()">动画
                     </label>
-                    <label>
-                        冷门佳片
-                        <input type="radio" name="tag" value="冷门佳片">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="冒险" onclick="loadPage()">冒险
                     </label>
-                    <label>
-                        华语
-                        <input type="radio" name="tag" value="华语">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="动作" onclick="loadPage()">动作
                     </label>
-                    <label>
-                        欧美
-                        <input type="radio" name="tag" value="欧美">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="历史" onclick="loadPage()">历史
                     </label>
-                    <label>
-                        韩国
-                        <input type="radio" name="tag" value="韩国">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="战争" onclick="loadPage()">战争
                     </label>
-                    <label>
-                        日本
-                        <input type="radio" name="tag" value="日本">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="犯罪" onclick="loadPage()">犯罪
                     </label>
-                    <label>
-                        动作
-                        <input type="radio" name="tag" value="动作">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="悬疑" onclick="loadPage()">悬疑
                     </label>
-                    <label>
-                        喜剧
-                        <input type="radio" name="tag" value="喜剧">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="惊悚" onclick="loadPage()">惊悚
                     </label>
-                    <label>
-                        爱情
-                        <input type="radio" name="tag" value="爱情">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="喜剧" onclick="loadPage()">喜剧
                     </label>
-                    <label>
-                        科幻
-                        <input type="radio" name="tag" value="科幻">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="科幻" onclick="loadPage()">科幻
                     </label>
-                    <label>
-                        悬疑
-                        <input type="radio" name="tag" value="悬疑">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="恐怖" onclick="loadPage()">恐怖
                     </label>
-                    <label>
-                        恐怖
-                        <input type="radio" name="tag" value="恐怖">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="西部" onclick="loadPage()">西部
                     </label>
-                    <label>
-                        成长
-                        <input type="radio" name="tag" value="成长">
+                    <label class="a1">
+                        <input type="radio" name="tag" value="古装" onclick="loadPage()">古装
+                    </label>
+                    <label class="a1">
+                        <input type="radio" name="tag" value="纪录片" onclick="loadPage()">纪录片
                     </label>
                 </div>
 
@@ -131,13 +118,13 @@
         <div class="tool">
             <div class="sort">
                 <label>
-                    <input type="radio" name="sort" value="recommend" checked="checked">按热度排序
+                    <input type="radio" name="sort" value="rating" checked="checked" onclick="loadPage()">按评分排序
                 </label>
                 <label>
-                    <input type="radio" name="sort" value="time">按时间排序
+                    <input type="radio" name="sort" value="year" onclick="loadPage()">按时间排序
                 </label>
                 <label>
-                    <input type="radio" name="sort" value="rank">按评价排序
+                    <input type="radio" name="sort" value="" onclick="loadPage()">按评价排序
                 </label>
             </div>
 
@@ -153,31 +140,15 @@
             <input type="hidden" name="page_start" value="0">
         </div>
 
-        <div class="item">
-            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2503635995.jpg" class="imageSize">
-            <h4><a href="">琅琊榜之风起长林</a></h4>
-            <p> 8.9 </p>
-            <span>选座购票</span>
+        <div class="movieInfoList">
+
         </div>
-        <div class="item">
-            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2503635995.jpg" class="imageSize">
-            <h4><a href="">琅琊榜之风起长林</a></h4>
-            <p> 8.9 </p>
-            <span>选座购票</span>
-        </div><div class="item">
-            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2503635995.jpg" class="imageSize">
-            <h4><a href="">琅琊榜之风起长林</a></h4>
-            <p> 8.9 </p>
-            <span>选座购票</span>
-        </div><div class="item">
-            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2503635995.jpg" class="imageSize">
-            <h4><a href="">琅琊榜之风起长林</a></h4>
-            <p> 8.9 </p>
-            <span>选座购票</span>
-        </div>
-        <div class="more">显示全部影片</div>
+
+        <div class="more showOther" id="">显示全部影片</div>
     </div>
 </div>
+
+
 
 
 <div class="nav-footer">
@@ -201,9 +172,96 @@
     </div>
 </div>
 </body>
+</body>
 
 <script>
+    $(document).ready(function () {
+	    var counter = 0; /*计数器*/
+	    var Start = 0; /*offset*/
+	    var Size = 20; /*size*/
 
+	    loadMovieList(Start, Size);
+
+	    /*监听加载更多*/
+	    $(".showOther").click(function () {
+		    counter ++;
+		    Start = counter * Size;
+
+		    loadMovieList(Start, Size);
+	    });
+    });
+
+    function loadPage() {
+	    $(".movieInfoList").empty();
+//	    counter = 0;
+//	    pageStart = 0;
+//	    pageSize = 20;
+	    /*初始化*/
+	    var counter = 0; /*计数器*/
+	    var pageStart = 0; /*offset*/
+	    var pageSize = 20; /*size*/
+
+	    loadMovieList(pageStart, pageSize);
+
+	    /*监听加载更多*/
+	    $(".showOther").click(function () {
+		    counter ++;
+		    pageStart = counter * pageSize;
+		    loadMovieList(pageStart, pageSize);
+	    });
+    };
+
+
+
+    /**
+     * 根据关键词和排序方式排序显示
+     */
+    function loadMovieList(offset,size) {
+	    var genre = $('input:radio[name="tag"]:checked').val();
+	    var other = $('input:radio[name="sort"]:checked').val();
+
+
+	    var success = function (data) {
+	    	var sum = data.length;        // 获取总长度
+
+            if (sum - offset < size){
+                size = sum - offset;
+            }
+
+            for (var i = offset;i < (offset + size);i++){
+                $(".movieInfoList").append(`
+                     <div class="item">
+                         <a href="/movieInfo/`+ data[i].id +`">
+                            <img src="`+ data[i].image +`">
+                            <h4>
+                                <a href="/movieInfo/`+ data[i].id +`">`+ data[i].title +`</a>
+                            </h4>
+                            <p>`+ data[i].rating +`</p>
+                         </a>
+                     </div>
+                `);
+            }
+
+		    if ( (offset + size) >= sum){
+			    $(".showOther").hide();
+		    }else{
+			    $(".showOther").show();
+		    }
+//		    alert(size)
+	    };
+	    Get("/allMovie/getInfo/" + genre + "/" + other,success);
+    }
+
+
+
+
+    /**
+     * 点击换色功能
+     */
+    $(".a1").click(function () {
+	    $(".a1").removeClass("fontBackgroundColor");
+	    $(this).addClass("fontBackgroundColor");
+    });
 
 </script>
 

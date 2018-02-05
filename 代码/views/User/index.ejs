@@ -40,7 +40,7 @@
   <div class="nav-second">
     <ul>
       <li><a href="javascript:void(0)">影讯&购票</a></li>
-      <li><a href="javascript:void(0)">选电影</a></li>
+      <li><a href="/allMovie">选电影</a></li>
       <li><a href="javascript:void(0)">电视剧</a></li>
       <li><a href="javascript:void(0)">排行榜</a></li>
       <li><a href="javascript:void(0)">分类</a></li>
@@ -64,10 +64,12 @@
 
     <% result.forEach(function (e) { %>
         <div class="item">
-          <img src="<%= e.image %>" class="imageSize">
-          <h4><a href=""> <%= e.title %> </a></h4>
-          <p> <%= e.rating %> </p>
-          <span>选座购票</span>
+          <a href="/movieInfo/<%= e.id %>">
+            <img src="<%= e.image %>" class="imageSize">
+            <h4><a href="/movieInfo/<%= e.id %>"> <%= e.title %> </a></h4>
+            <p> <%= e.rating %> </p>
+            <span>选座购票</span>
+          </a>
         </div>
     <% })%>
 
@@ -91,7 +93,7 @@
         <li><a href="javascript:void(0)" onclick="loadMovieList($(this).text())"><p class="a1">喜剧</p></a></li>
         <li><a href="javascript:void(0)" onclick="loadMovieList($(this).text())"><p class="a1">武侠</p></a></li>
       </ul>
-      <div class="headbar-right"><a href="javascript:void(0)">更多</a></div>
+      <div class="headbar-right"><a href="/allMovie">更多</a></div>
     </div>
 
     <div id="movieInfoList">
@@ -280,9 +282,12 @@
             data.forEach(function (e) {
 	            $("#movieInfoList").append(`
                     <div class="item">
-                        <img src="`+ e.image +`" class="imageSize">
-                        <h4><a href="">`+ e.title +`</a></h4>
-                        <p>`+ e.rating +`</p>
+                        <a href="/movieInfo/`+ e.id +`">
+                            <img src="`+ e.image +`" class="imageSize">
+                            <h4><a href="/movieInfo/`+ e.id +`">`+ e.title +`</a></h4>
+                            <p>`+ e.rating +`</p>
+                        </a>
+
                     </div>
 
                 `);
