@@ -4,13 +4,7 @@ var User = sequelize.import('../../models/User');
 module.exports = {
 
     getInformation: function (req,res,next) {                      // 查
-        User.findById('yanzefan').then(function (result) {
-            res.render('Admin/index',{
-                name: result.name,
-                phoneNumber: result.phoneNumber,
-                sex: result.sex
-            })
-        }).catch(next);
+        res.render("Admin/index");
     },
 
     createInfo:function (req,res,next) {              // 创建

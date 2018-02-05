@@ -9,11 +9,23 @@ module.exports = {
 	 * @param res
 	 * @param next
 	 */
-	getInfo: function (req,res,next) {
+	getMovieCategoryList: function (req,res,next) {
 		MovieCategory.findAll().then(function (result) {
 			res.send(result);
 		}).catch(next);
 	},
+
+	/**
+	 * 返回电影分类页面
+	 * @param req
+	 * @param res
+	 * @param next
+	 */
+	getInfo: function (req, res, next) {
+		res.render("Admin/movieCategoryManagement");
+	},
+
+
 
 
 

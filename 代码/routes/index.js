@@ -15,8 +15,6 @@ module.exports = function (app) {
     app.get('/searchMovieList/:movieRelatedInfo',controllers.user.indexController.getMovieRelatedInfo);
 
 
-
-
     // 所有电影页面
 	app.get('/allMovie',controllers.user.allMovieController.getInfo);
 	app.get('/allMovie/getInfo/:genere/:other',controllers.user.allMovieController.getAll);
@@ -35,16 +33,30 @@ module.exports = function (app) {
      *  ========================================================================
      */
 
-    app.get('/admin/',controllers.admin.adminInfoController.getInformation);
 
-    app.post('/admin/createInfo',controllers.admin.adminInfoController.createInfo);
+	app.get('/admin',controllers.admin.adminInfoController.getInformation);
 
-    app.post('/admin/updateInfo',controllers.admin.adminInfoController.updateInfo);
 
-    app.post('/admin/deleteInfo',controllers.admin.adminInfoController.deleteInfo);
 
-    // 获取电影分类
-	app.get('/admin/getMovieCategoryList',controllers.admin.movieCategoryController.getInfo);
+
+    // 获取电影页面
+    app.get('/admin/movie',controllers.admin.movieManagementController.getInfo);
+    // 获取电影信息列表
+	app.get('/admin/movie/getAll',controllers.admin.movieManagementController.getAll);
+	// 添加电影
+	app.get('/admin/movie/createMovie/:title/:original_title/:image/:directors/:genres/:year/:casts',controllers.admin.movieManagementController.createMovie);
+	// 修改电影信息
+	app.get('/admin/movie/modifyMovie/:movieInfoId/:title/:original_title/:image/:directors/:genres/:year/:casts',controllers.admin.movieManagementController.modifyMovie);
+	// 删除电影
+	app.get('/admin/movie/delete/:movieInfoId',controllers.admin.movieManagementController.deleteById);
+
+
+
+	// 获取电影分类页面
+	app.get('/admin/movieCategory',controllers.admin.movieCategoryManagementController.getInfo);
+	// 获取电影分类列表
+	app.get('/admin/movieCategory/getMovieCategoryList',controllers.admin.movieCategoryManagementController.getMovieCategoryList);
+
 
 
 

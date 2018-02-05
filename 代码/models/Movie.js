@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         rating:{                        //
             type: DataTypes.FLOAT,
-            allowNull: false,
+            allowNull: true,
             comment: "评分"
         },
         directors: {                    //
