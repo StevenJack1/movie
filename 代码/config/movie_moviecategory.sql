@@ -1,0 +1,11 @@
+INSERT INTO movie.moviecategory (category) VALUES ('喜剧');
+INSERT INTO movie.moviecategory (category) VALUES ('犯罪');
+INSERT INTO movie.moviecategory (category) VALUES ('言情');
+INSERT INTO movie.moviecategory (category) VALUES ('奇幻');
+INSERT INTO movie.moviecategory (category) VALUES ('魔幻');
+INSERT INTO movie.moviecategory (category) VALUES ('动作');
+INSERT INTO movie.moviecategory (category) VALUES ('剧情');
+INSERT INTO movie.moviecategory (category) VALUES ('家庭');
+INSERT INTO movie.moviecategory (category) VALUES ('动画');
+INSERT INTO movie.moviecategory (category) VALUES ('战争');
+INSERT INTO movie.moviecategory (category) VALUES ('武侠');

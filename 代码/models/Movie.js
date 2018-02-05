@@ -57,11 +57,6 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             comment: "图片"
         },
-        description: {                        //
-            type: DataTypes.STRING,
-            allowNull: false,
-            comment: "简介"
-        },
     }, {
         underscored: true, //额外字段以下划线来分割
         // createdAt: "created_at",
