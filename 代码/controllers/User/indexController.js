@@ -17,7 +17,12 @@ module.exports = {
 	    }).catch(next);
     },
 
-
+	/**
+	 * 根据genere获取电影信息
+	 * @param req
+	 * @param res
+	 * @param next
+	 */
     getMovieInfo: function (req,res,next) {
     	var genere = req.params.genere;
 	    var sql = "select * from Movie where genres like '%"+genere+"%' ORDER BY rating DESC limit 0,6; ";
@@ -25,5 +30,23 @@ module.exports = {
 		    res.send(result);
 	    });
     },
+	/**
+	 * 根据关键词获取电影信息列表
+	 * @param req
+	 * @param res
+	 * @param next
+	 */
+	getMovieRelatedInfo: function (req, res, next) {
+		var movieRelatedInfo = req.params.movieRelatedInfo;
+		var sql = "select * from Movie where CONCAT(title,original_title,directors,casts) like '%"+movieRelatedInfo+"%' ";
+		sequelize.query(sql).spread((result, metadata) => {
+			res.render('User/relatedMovieList',{
+				result:result,
+				movieRelatedInfo:movieRelatedInfo
+			});
+		});
+
+
+	}
 
 };

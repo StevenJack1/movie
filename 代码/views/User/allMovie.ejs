@@ -27,15 +27,15 @@
             <a href="/" class="navbar-brand">思沃影院</a>
         </div>
         <div class="navbar-input">
-            <input class="form-control" type="text" placeholder="搜索电影、电视剧、综艺、影人">
-            <input class="form-sub" type="submit" value="搜索">
+            <input class="form-control" type="text" placeholder="请输入电影名或导演或演员" id="movieRelatedInfo">
+            <input class="form-sub" type="submit" value="搜索" id="submit">
         </div>
     </div>
     <hr style="clear: both;border: 1px solid #e5ebe4">
     <div class="nav-second">
         <ul>
             <li><a href="javascript:void(0)">影讯&购票</a></li>
-            <li><a href="javascript:void(0)">选电影</a></li>
+            <li><a href="/allMovie">选电影</a></li>
             <li><a href="javascript:void(0)">电视剧</a></li>
             <li><a href="javascript:void(0)">排行榜</a></li>
             <li><a href="javascript:void(0)">分类</a></li>
@@ -262,7 +262,14 @@
 	    $(".a1").removeClass("fontBackgroundColor");
 	    $(this).addClass("fontBackgroundColor");
     });
-
+    $("#submit").click(function () {
+	    var movieRelatedInfo = $("#movieRelatedInfo").val();
+	    if (movieRelatedInfo != ""){
+		    window.open("/searchMovieList/" + movieRelatedInfo);
+	    } else {
+		    alert("输入条件不能为空")
+	    }
+    });
 </script>
 
 

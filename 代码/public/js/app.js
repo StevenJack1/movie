@@ -98,3 +98,4 @@ var Delete = function (url) {
 		}
 	});
 };
+

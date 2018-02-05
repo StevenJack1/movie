@@ -11,6 +11,9 @@ module.exports = function (app) {
     app.get('/',controllers.user.indexController.getInfo);
     // 模糊查询电影分类信息
     app.get('/find/:genere',controllers.user.indexController.getMovieInfo);
+    // 根据条件模糊查询电影
+    app.get('/searchMovieList/:movieRelatedInfo',controllers.user.indexController.getMovieRelatedInfo);
+
 
 
 

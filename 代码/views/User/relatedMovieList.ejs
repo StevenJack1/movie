@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>思沃影院</title>
+    <link rel="stylesheet" href="/stylesheets/other/style.css">
+    <link rel="stylesheet" href="/stylesheets/other/detail.css">
+    <script src="/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/app.js"></script>
+</head>
+<style>
+    .imageSize {
+        height: 140px;
+        width: 100px;
+    }
+</style>
+
+<body>
+<div class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">思沃影院</a>
+        </div>
+        <div class="navbar-input">
+            <input class="form-control" type="text" placeholder="请输入电影名或导演或演员" id="movieRelatedInfo">
+            <input class="form-sub" type="submit" value="搜索" id="submit">
+        </div>
+    </div>
+    <hr style="clear: both;border: 1px solid #e5ebe4">
+    <div class="nav-second">
+        <ul>
+            <li><a href="javascript:void(0)">影讯&购票</a></li>
+            <li><a href="/allMovie">选电影</a></li>
+            <li><a href="javascript:void(0)">电视剧</a></li>
+            <li><a href="javascript:void(0)">排行榜</a></li>
+            <li><a href="javascript:void(0)">分类</a></li>
+            <li><a href="javascript:void(0)">影评</a></li>
+            <li><a href="javascript:void(0)">2017年度榜单</a></li>
+            <li><a href="javascript:void(0)">2017观影报告</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div class="mv-title" style="margin-top: 50px">
+        <h1> 搜索 <%= movieRelatedInfo %> </h1>
+    </div>
+    <br>
+
+    <% result.forEach(function (e) { %>
+        <div class="infor">
+            <div class="detail-left" style="margin-bottom: 30px">
+                <a href="/movieInfo/<%= e.id %>">
+                    <img src="<%= e.image %>" style="height: 97px;width: 65px;">
+                </a>
+            </div>
+            <div class="detail-right">
+                    <span>
+                        <a href="/movieInfo/<%= e.id %>"> <%= e.title %>  <%= e.original_title %> (<%= e.year %>)  </a>
+                    </span>
+                <br>
+                <span>
+                        <span class="addStyle">  <%= e.rating %> </span>
+                    </span>
+                <br>
+                <span>
+                        <span class="addStyle"> <%= e.directors %> </span>
+                    </span>
+                <br>
+                <span>
+                        <span class="addStyle"> <%= e.casts %> </span>
+                    </span>
+                <br>
+                <span>
+                        <span class="addStyle"> <%= e.genres %> </span>
+                    </span>
+            </div>
+        </div>
+    <% })%>
+
+
+
+</div>
+</body>
+
+<script>
+	$("#submit").click(function () {
+		var movieRelatedInfo = $("#movieRelatedInfo").val();
+		if (movieRelatedInfo != ""){
+			window.open("/searchMovieList/" + movieRelatedInfo);
+		} else {
+			alert("输入条件不能为空")
+		}
+	});
+</script>
+
+</html>
