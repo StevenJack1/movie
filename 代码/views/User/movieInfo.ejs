@@ -296,7 +296,9 @@
         };
         Get("/movieInfo/getRecommendMovieList/" + movieInfoId , success);
     });
-
+    /**
+     * 搜索功能
+     */
     $("#submit").click(function () {
 	    var movieRelatedInfo = $("#movieRelatedInfo").val();
 	    if (movieRelatedInfo != ""){

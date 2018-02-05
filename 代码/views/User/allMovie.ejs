@@ -175,43 +175,30 @@
 </body>
 
 <script>
+	var counter = 0; /*计数器*/
+	var pageStart = 0; /*offset*/
+	var pageSize = 20; /*size*/
+
     $(document).ready(function () {
-	    var counter = 0; /*计数器*/
-	    var Start = 0; /*offset*/
-	    var Size = 20; /*size*/
-
-	    loadMovieList(Start, Size);
-
-	    /*监听加载更多*/
-	    $(".showOther").click(function () {
-		    counter ++;
-		    Start = counter * Size;
-
-		    loadMovieList(Start, Size);
-	    });
-    });
-
-    function loadPage() {
-	    $(".movieInfoList").empty();
-//	    counter = 0;
-//	    pageStart = 0;
-//	    pageSize = 20;
-	    /*初始化*/
-	    var counter = 0; /*计数器*/
-	    var pageStart = 0; /*offset*/
-	    var pageSize = 20; /*size*/
-
 	    loadMovieList(pageStart, pageSize);
 
 	    /*监听加载更多*/
 	    $(".showOther").click(function () {
 		    counter ++;
 		    pageStart = counter * pageSize;
+
 		    loadMovieList(pageStart, pageSize);
 	    });
+    });
+
+    function loadPage() {
+	    $(".movieInfoList").empty();
+	    counter = 0;
+	    pageStart = 0;
+
+	    loadMovieList(pageStart, pageSize);
+
     };
-
-
 
     /**
      * 根据关键词和排序方式排序显示
@@ -251,10 +238,6 @@
 	    };
 	    Get("/allMovie/getInfo/" + genre + "/" + other,success);
     }
-
-
-
-
     /**
      * 点击换色功能
      */
@@ -262,6 +245,9 @@
 	    $(".a1").removeClass("fontBackgroundColor");
 	    $(this).addClass("fontBackgroundColor");
     });
+    /**
+     * 搜索功能
+     */
     $("#submit").click(function () {
 	    var movieRelatedInfo = $("#movieRelatedInfo").val();
 	    if (movieRelatedInfo != ""){
