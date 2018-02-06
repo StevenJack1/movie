@@ -11,6 +11,7 @@ const sequelize = new Sequelize('movie','root','root',{
         min:0,
         idle:10000
     },
+    operatorsAliases:false,
 	logging: false
 });
 
