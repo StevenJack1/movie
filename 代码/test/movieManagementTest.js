@@ -33,7 +33,7 @@ describe('电影管理页面', function () {
         var image = "1";
         var directors = "1";
         var genres = "1";
-        var year = 2017;
+        var year = 1992;
         var casts = "1";
         request(app)
             .post('/admin/movie/createMovie/' + title + "/" + original_title + "/" + image + "/"
