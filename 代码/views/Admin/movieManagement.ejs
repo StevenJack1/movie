@@ -218,40 +218,40 @@
 </div>
 
 <script>
-	$("#addButton").click(function () {
-		$("#addModel").modal('show');
-	});
+    $("#addButton").click(function () {
+        $("#addModel").modal('show');
+    });
 
-	/**
+    /**
      * 分类算法
      */
     $(document).ready(function () {
-	    var counter = 0; /*计数器*/
-	    var pageStart = 0; /*offset*/
-	    var pageSize = 20; /*size*/
+        var counter = 0; /*计数器*/
+        var pageStart = 0; /*offset*/
+        var pageSize = 20; /*size*/
 
-	    loadMovieList(pageStart, pageSize);
+        loadMovieList(pageStart, pageSize);
 
-	    /*监听加载更多*/
-	    $("#showOther").click(function () {
-		    counter ++;
-		    pageStart = counter * pageSize;
+        /*监听加载更多*/
+        $("#showOther").click(function () {
+            counter ++;
+            pageStart = counter * pageSize;
 
-		    loadMovieList(pageStart, pageSize);
-	    });
+            loadMovieList(pageStart, pageSize);
+        });
     });
 
-	/**
-	 * 电影显示
-	 */
-	function loadMovieList(offset,size) {
-		var success = function (data) {
-			var sum = data.length;        // 获取总长度
-			if (sum - offset < size){
-				size = sum - offset;
-			}
-			for (var i = offset;i < (offset + size);i++){
-				$("#userTable").append(`
+    /**
+     * 电影显示
+     */
+    function loadMovieList(offset,size) {
+        var success = function (data) {
+            var sum = data.length;        // 获取总长度
+            if (sum - offset < size){
+                size = sum - offset;
+            }
+            for (var i = offset;i < (offset + size);i++){
+                $("#userTable").append(`
                        <tr>
                             <td><a href="#">`+ data[i].title +`</a></td>
                             <td><a href="#">`+ data[i].original_title +`</a></td>
@@ -264,80 +264,100 @@
                             </td>
                         </tr>
                 `);
-			}
-			if ( (offset + size) >= sum){
-				$("#showOther").hide();
-			}else{
-				$("#showOther").show();
-			}
-		};
-		Get("/admin/movie/getAll",success);
+            }
+            if ( (offset + size) >= sum){
+                $("#showOther").hide();
+            }else{
+                $("#showOther").show();
+            }
+        };
+        Get("/admin/movie/getAll",success);
 
-		$(".deleteButton").click(function () {
-			var movieInfoId = $(this).attr("movieInfoId");
-			swal({
-					title: "确定删除吗？",
-					text: "你将无法恢复！",
-					type: "warning",
-					showCancelButton: true,
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "确定删除！",
-					closeOnConfirm: false
-				},
-				function(){
-					Delete("/admin/movie/delete/"+ movieInfoId);
-					flushCurrent();
-				});
-		});
-	}
+        $(".deleteButton").click(function () {
+            var movieInfoId = $(this).attr("movieInfoId");
+            swal({
+                    title: "确定删除吗？",
+                    text: "你将无法恢复！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定删除！",
+                    closeOnConfirm: false
+                },
+                function(){
+                    Delete("/admin/movie/delete/"+ movieInfoId);
+                    flushCurrent();
+                });
+        });
+    }
 
-	/**
+    /**
      * 添加电影信息
-	 */
-	$("#addButton").click(function () {
-       $("#addModelCommitButton").click(function () {
-           var title = $("#title").val();
-	       var original_title = $("#original_title").val();
-	       var image = $("#image").val();
-	       var directors = $("#directors").val();
-	       var genres = $("#genres").val();
-	       var year = $("#year").val();
-	       var casts = $("#casts").val();
+     */
+    $("#addButton").click(function () {
+        $("#addModelCommitButton").click(function () {
+            var title = $("#title").val();
+            var original_title = $("#original_title").val();
+            var image = $("#image").val();
+            var directors = $("#directors").val();
+            var genres = $("#genres").val();
+            var year = $("#year").val();
+            var casts = $("#casts").val();
 
-	       $.ajax({
-		       url: "/admin/movie/createMovie/" + title + "/" + original_title + "/" + image + "/"
-                    + directors + "/" + genres + "/" + year + "/" + casts,
-		       type:"POST",
-		       contentType: "application/json",
-		       success: function () {
-			       swal({
-				       title: "添加成功",
-				       text: "添加成功",
-				       type: "success",
-				       confirmButtonText: "知道了"
-			       });
-		       }
-	       });
-	       $("#addModelCancelButton").click();
-       });
-	});
+            $.ajax({
+                url: "/admin/movie/createMovie/" + title + "/" + original_title + "/" + image + "/"
+                + directors + "/" + genres + "/" + year + "/" + casts,
+                type:"POST",
+                contentType: "application/json",
+                success: function () {
+                    swal({
+                        title: "添加成功",
+                        text: "添加成功",
+                        type: "success",
+                        confirmButtonText: "知道了"
+                    });
+
+                }
+            });
+            flushCurrent();
+            $(".modal-backdrop").remove();
+        });
+    });
     // 刷新本页
-	var flushCurrent = function () {
-		$.ajax({
-			type: 'GET',
-			url: "/admin/movie",
-			success: function (msg) {
-				$.ajaxSetup({
-					async: false
-				});
-				$("#mainPage").empty().append(msg);
-			}
-		});
-	}
+    var flushCurrent = function () {
+        $.ajax({
+            type: 'GET',
+            url: "/admin/movie",
+            success: function (msg) {
+                $.ajaxSetup({
+                    async: false
+                });
+                $("#mainPage").empty().append(msg);
+            }
+        });
+    }
 
-	$("#search").click(function () {
-       var searchFormUserName = $("#searchFormUserName").val();
+    $("#search").click(function () {
+        var searchFormUserName = $("#searchFormUserName").val();
         alert("本功能暂时没写");
-	});
+    });
+
+    $(".close").click(function () {
+        clearContent();
+    })
+
+    $("#addModelCancelButton").click(function () {
+        clearContent();
+    })
+
+    function clearContent() {
+        $("#title").val("");
+        $("#original_title").val("");
+        $("#image").val("");
+        $("#directors").val("");
+        $("#genres").val("");
+        $("#year").val("");
+        $("#casts").val("");
+    }
 
 </script>
