@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">代码\routes\index.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(14 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(19 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">100% <small>(1 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(14 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(19 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">代码/routes/</a> &#187; index.js</div>
@@ -75,7 +75,23 @@
 48
 49
 50
-51</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -93,8 +109,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -112,6 +126,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -120,8 +140,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,8 +174,6 @@ module.exports = function (app) {
     app.get('/searchMovieList/:movieRelatedInfo',controllers.user.indexController.getMovieRelatedInfo);
 &nbsp;
 &nbsp;
-&nbsp;
-&nbsp;
     // 所有电影页面
 	app.get('/allMovie',controllers.user.allMovieController.getInfo);
 	app.get('/allMovie/getInfo/:genere/:other',controllers.user.allMovieController.getAll);
@@ -162,16 +192,34 @@ module.exports = function (app) {
      *  ========================================================================
      */
 &nbsp;
-    app.get('/admin/',controllers.admin.adminInfoController.getInformation);
+	// 首页
+	app.get('/admin',controllers.admin.adminInfoController.getInformation);
 &nbsp;
-    app.post('/admin/createInfo',controllers.admin.adminInfoController.createInfo);
 &nbsp;
-    app.post('/admin/updateInfo',controllers.admin.adminInfoController.updateInfo);
 &nbsp;
-    app.post('/admin/deleteInfo',controllers.admin.adminInfoController.deleteInfo);
+    // 获取电影页面
+    app.get('/admin/movie',controllers.admin.movieManagementController.getInfo);
+    // 获取电影信息列表
+	app.get('/admin/movie/getAll',controllers.admin.movieManagementController.getAll);
+	// 添加电影
+	app.post('/admin/movie/createMovie/:title/:original_title/:image/:directors/:genres/:year/:casts',controllers.admin.movieManagementController.createMovie);
+	// 修改电影信息
+	app.get('/admin/movie/modifyMovie/:movieInfoId/:title/:original_title/:image/:directors/:genres/:year/:casts',controllers.admin.movieManagementController.modifyMovie);
+	// 删除电影
+	app.get('/admin/movie/delete/:movieInfoId',controllers.admin.movieManagementController.deleteById);
 &nbsp;
-    // 获取电影分类
-	app.get('/admin/getMovieCategoryList',controllers.admin.movieCategoryController.getInfo);
+&nbsp;
+&nbsp;
+&nbsp;
+	// 获取电影分类页面
+	app.get('/admin/movieCategory',controllers.admin.movieCategoryManagementController.getInfo);
+	// 获取电影分类列表
+	app.get('/admin/movieCategory/getMovieCategoryList',controllers.admin.movieCategoryManagementController.getMovieCategoryList);
+	// 删除电影分类
+	app.get('/admin/movieCategory/deleteById/:categoryId',controllers.admin.movieCategoryManagementController.deleteById);
+	// 添加电影分类
+	app.post('/admin/movieCategory/add/:category',controllers.admin.movieCategoryManagementController.addInfo);
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
@@ -180,7 +228,7 @@ module.exports = function (app) {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 05 2018 17:07:34 GMT+0800 (中国标准时间)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 06 2018 09:05:24 GMT+0800 (中国标准时间)</div>
 </div>
 <script src="../../prettify.js"></script>
 <script>

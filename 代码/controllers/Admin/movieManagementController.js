@@ -47,31 +47,6 @@ module.exports = {
 		}).catch(next);
 	},
 	/**
-	 * 修改信息
-	 * @param req
-	 * @param res
-	 * @param next
-	 */
-	modifyMovie : function (req, res, next) {
-		var movieInfoId = req.params.movieInfoId;
-		var data ={
-			title: req.params.title,
-			original_title: req.params.original_title,
-			image: req.params.image,
-			directors: req.params.directors,
-			genres: req.params.genres,
-			year: req.params.year,
-			casts: req.params.casts
-		};
-		Movie.update(data,{
-			where:{
-				id:movieInfoId
-			}
-		}).then( function () {
-			res.render("Admin/movieManagement");
-		}).catch(next);
-	},
-	/**
 	 * 删除电影
 	 * @param req
 	 * @param res

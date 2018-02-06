@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-<div class="header medium">
+<div class="header low">
     <h1>Code coverage report for <span class="entity">代码\controllers\User\allMovieController.js</span></h1>
     <h2>
-        Statements: <span class="metric">64.71% <small>(11 / 17)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">50% <small>(2 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">100% <small>(2 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">64.71% <small>(11 / 17)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">17.65% <small>(3 / 17)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">17.65% <small>(3 / 17)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">代码/controllers/User/</a> &#187; allMovieController.js</div>
@@ -80,7 +80,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -90,17 +90,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -122,8 +122,8 @@ module.exports = {
 	 * @param res
 	 * @param next
 	 */
-    getInfo: function (req,res,next) {                      // 查
-        res.render("User/allMovie");
+    getInfo: <span class="fstat-no" title="function not covered" >function (req,res,next) {</span>                      // 查
+<span class="cstat-no" title="statement not covered" >        res.render("User/allMovie");</span>
     },
 &nbsp;
 	/**
@@ -132,18 +132,18 @@ module.exports = {
 	 * @param res
 	 * @param next
 	 */
-	getAll : function (req, res, next) {
-		var genere = req.params.genere;
-		var other = req.params.other;
-		<span class="missing-if-branch" title="if path not taken" >I</span>if (other == "year"){
+	getAll : <span class="fstat-no" title="function not covered" >function (req, res, next) {</span>
+<span class="cstat-no" title="statement not covered" >		var genere = req.params.genere;</span>
+<span class="cstat-no" title="statement not covered" >		var other = req.params.other;</span>
+<span class="cstat-no" title="statement not covered" >		if (other == "year"){</span>
 <span class="cstat-no" title="statement not covered" >			var sql = "select * from Movie where genres like '%"+genere+"%' ORDER BY year DESC; ";</span>
 <span class="cstat-no" title="statement not covered" >			sequelize.query(sql).spread((result, metadata) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >				res.send(result);</span>
 			});
-		} else <span class="missing-if-branch" title="else path not taken" >E</span>if (other == "rating"){
-			var sql = "select * from Movie where genres like '%"+genere+"%' ORDER BY rating DESC; ";
-			sequelize.query(sql).spread((result, metadata) =&gt; {
-				res.send(result);
+		} else <span class="cstat-no" title="statement not covered" >if (other == "rating"){</span>
+<span class="cstat-no" title="statement not covered" >			var sql = "select * from Movie where genres like '%"+genere+"%' ORDER BY rating DESC; ";</span>
+<span class="cstat-no" title="statement not covered" >			sequelize.query(sql).spread((result, metadata) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >				res.send(result);</span>
 			});
 		} else {
 <span class="cstat-no" title="statement not covered" >			var sql = "select * from Movie where genres like '%"+genere+"%';";</span>
@@ -159,7 +159,7 @@ module.exports = {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 05 2018 17:07:34 GMT+0800 (中国标准时间)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 06 2018 09:05:24 GMT+0800 (中国标准时间)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>
