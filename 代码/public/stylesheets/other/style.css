@@ -38,7 +38,7 @@ a {
   width: 83%;
 }
 .form-control{
-  width: 80%;
+  width: 63%;
   height: 25px;
   margin: 8px 0;
   background: #fff;
@@ -46,7 +46,7 @@ a {
   cursor: text;
 }
 .form-sub{
-  margin-left: -5px;
+  margin-left: -3px;
   height:30px;
   cursor: pointer;
   border: none;
@@ -54,9 +54,18 @@ a {
   color: #ffffff;
   height: 30px;
 }
+.form-a{
+  margin-left: 2px;
+  height:30px;
+  cursor: pointer;
+  border: none;
+  width: 70px;
+  color: white;
+  height: 30px;
+}
 
 .nav-second{
-  width: 800px;
+  width: 850px;
   margin: 8px auto;
 }
 .nav-second ul li{
