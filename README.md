@@ -82,17 +82,19 @@
 
 ![](https://i.imgur.com/1hfwFLn.png)
 
-### 用户故事 #5 作为API调用者，我想获取有关电影分类的信息，以便给网站用户显示电影分类列表，返回结果如下：
-
+### 用户故事 #5 作为API调用者，我想获取有关电影分类的信息，以便给网站用户显示电影分类列表，页面显示如下：
+		服务器ip:端口:/admin/movieCategory/getMovieCategoryList
 		app.get('/admin/movieCategory/getMovieCategoryList',controllers.admin.movieCategoryManagementController.getMovieCategoryList);
 
 ![](https://i.imgur.com/GK0SumC.png)
 ### 用户故事 #6 提供一个API返回多部电影详细信息，提供一个API返回一部电影详细信息
-
+		
 		// 需要传入电影id号
+		服务器ip:端口:/movieInfo/1
 		app.get('/movieInfo/:movieInfoId',controllers.user.movieInfoController.getInfo);
 		
 		// 需要传入类型("爱情" Or "剧情" 。。。。)和排序方式(rating Or year)
+		服务器ip:端口:/allMovie/getInfo/剧情/year
 		app.get('/allMovie/getInfo/:genere/:other',controllers.user.allMovieController.getAll);
 
 ### 其他功能 #1 在搜索时增加模糊搜索功能，可以输入电影名/原名/导演名/演员名，来显示所有相关信息
