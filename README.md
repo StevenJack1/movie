@@ -1,3 +1,6 @@
+# 请严格按照我环境配置的步骤进行操作(数据库配置)
+----------
+
 ## movie(思沃影院)
 
 ## 开发技术栈
@@ -53,34 +56,71 @@
 ### 6.启动项目，执行
 	supervisor ./bin/www
 
-### 7.如果要做测试，请在Terminal中输入
+### 7.在config目录下有两个sql的文件，这里面存放的是movie和movieCategory表的初始数据，请自行导入到mysql数据库中。
+
+### 8.如果要做测试，请在Terminal中输入
 	npm run-script test-cov
 
-### 8.项目运行后，在浏览器输入
+### 9.项目运行后，在浏览器输入
 	localhost:3000
 
-### 9.跳转到主页面，如下：
-![](https://i.imgur.com/UV1Nhzq.jpg)
+## 功能完成情况
 
-### 10.在这个页面可以选电影可以根据电影名或导演名或演员名搜索相关的电影，在最新热门电影可以根据类型切换电影，可以点击更多，则跳转到：
-![](https://i.imgur.com/VuTlIcv.jpg)
+### 用户故事 #1 作为网站用户，我想通过导航栏搜索电影，以便快速查看想了解的电影
 
-### 11.在更多电影中，可以根据类型和排序方式来显示电影，排序是按照评分或者时间来排序，如果点击一个电影后，可以跳转到电影详情页面，如下：
-![](https://i.imgur.com/qMqtUuo.png)
+![](https://i.imgur.com/jDhQrTq.png)
 
-### 12.在每一个页面上方都有一个搜索栏，可以根据关键字进行模糊查询，如下：
-![](https://i.imgur.com/PxUzPOQ.jpg)
+### 用户故事 #2 作为网站用户，我想按分类浏览电影，以便查看特定类型的电影
 
-### 13.这是前台显示页面，还有一个后台管理页面，请输入
-	localhost:3000/admin
+![](https://i.imgur.com/xYBedCX.png)
 
-### 14.在页面中有两个功能模块，分别是电影管理和电影分类管理，如下：
+### 用户故事 #3 作为网站用户，我想查看电影的详细信息，以便更全面的了解一部电影
+
+![](https://i.imgur.com/4ZTvEL9.png)
+
+### 用户故事 #4 作为网站用户，我想在电影详细页面获得类似电影推荐，以便发掘更多可能喜欢的电影
+
+![](https://i.imgur.com/1hfwFLn.png)
+
+### 用户故事 #5 作为API调用者，我想获取有关电影分类的信息，以便给网站用户显示电影分类列表，返回结果如下：
+
+		app.get('/admin/movieCategory/getMovieCategoryList',controllers.admin.movieCategoryManagementController.getMovieCategoryList);
+
+![](https://i.imgur.com/GK0SumC.png)
+### 用户故事 #6 提供一个API返回多部电影详细信息，提供一个API返回一部电影详细信息
+
+		// 需要传入电影id号
+		app.get('/movieInfo/:movieInfoId',controllers.user.movieInfoController.getInfo);
+		
+		// 需要传入类型("爱情" Or "剧情" 。。。。)和排序方式(rating Or year)
+		app.get('/allMovie/getInfo/:genere/:other',controllers.user.allMovieController.getAll);
+
+### 其他功能 #1 在搜索时增加模糊搜索功能，可以输入电影名/原名/导演名/演员名，来显示所有相关信息
+
+![](https://i.imgur.com/EvZvMuV.png)
+
+### 其他功能 #2 电影管理，在首页点击后台入口按钮，进入后台，可以添加电影信息以及删除电影
 ![](https://i.imgur.com/eDCwqDK.png)
 
-### 15.另一个页面不在展示，请自行运行。
+### 其他功能 #3 电影类别管理，可以添加电影类别也可以删除电影类别
+![](https://i.imgur.com/YQLbcaC.png)
 
-### 16.之后是测试，输入：
+### 其他功能 #4 之后是测试，输入：
 	npm run-script test-cov
-
-### 17.测试结果如下：
 ![](https://i.imgur.com/cFN7oKm.png)
+
+## 页面一览
+
+### 1
+![](https://i.imgur.com/tLfoh4Z.png)
+
+### 2
+![](https://i.imgur.com/7GSXNGD.jpg)
+
+### 3
+![](https://i.imgur.com/oIWQhTt.png)
+
+### 4
+![](https://i.imgur.com/GY2933A.png)
+
+### 后台不再展示
