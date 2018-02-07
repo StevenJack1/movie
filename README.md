@@ -10,8 +10,9 @@
 * 测试框架：mocha + supertest + should + istanbul
 * js版本：ES6
 * 项目工具：webstorm + datagrip + sourceTree + markdown + google
-* 压力测试工具：
-* 部署服务器：
+* 压力测试工具：Apache JMeter + badboy
+* 服务器：linux
+* 部署服务器地址：http://173.82.245.7/
 
 ## 项目目录结构解析
 ![](https://i.imgur.com/8geGkc2.png)
@@ -90,12 +91,13 @@
 ### 用户故事 #6 提供一个API返回多部电影详细信息，提供一个API返回一部电影详细信息
 		
 		// 需要传入电影id号
-		服务器ip:端口:/movieInfo/1
+		http://173.82.245.7/movieInfo/1
 		app.get('/movieInfo/:movieInfoId',controllers.user.movieInfoController.getInfo);
 		
 		// 需要传入类型("爱情" Or "剧情" 。。。。)和排序方式(rating Or year)
-		服务器ip:端口:/allMovie/getInfo/剧情/year
+		http://173.82.245.7/allMovie/getInfo/剧情/year
 		app.get('/allMovie/getInfo/:genere/:other',controllers.user.allMovieController.getAll);
+![](https://i.imgur.com/zQ42aNZ.png)
 
 ### 其他功能 #1 在搜索时增加模糊搜索功能，可以输入电影名/原名/导演名/演员名，来显示所有相关信息
 
@@ -110,6 +112,19 @@
 ### 其他功能 #4 之后是测试，输入：
 	npm run-script test-cov
 ![](https://i.imgur.com/cFN7oKm.png)
+
+### 其他功能 #5 进行压力测试，参数设置如下：
+* 每秒激发10个线程(相当于每秒十个用户同时访问)，循环5次，测试结果显示：在每秒钟有十个人同时访问该页面的情况下，每个用户显示页面的平均时间约为0.2秒，最小时间约为0.1秒，最大时间约为0.4秒，出错率为0。
+![](https://i.imgur.com/HgOMMfa.png)
+
+* 每秒激发100个线程(相当于每秒100个用户同时访问)，循环5次，测试结果显示：在每秒钟有一百个人同时访问该页面的情况下，每个用户显示页面的平均时间约为1.5秒，最小时间约为0.1秒，最大时间约为10秒，出错率为0。
+![](https://i.imgur.com/Ot7UdVF.png)
+
+* 每秒激发500个线程(相当于每秒500个用户同时访问)，循环5次，测试结果显示：在每秒钟有500个人同时访问该页面的情况下，每个用户显示页面的平均时间约为10秒，最小时间约为1.6秒，最大时间约为179秒，出错率为1.26%。
+![](https://i.imgur.com/YWVLeK1.png)
+
+* 每秒激发1000个线程(相当于每秒1000个用户同时访问)，循环5次，测试结果显示：在每秒钟有1000个人同时访问该页面的情况下，每个用户显示页面的平均时间约为10秒，最小时间约为1.6秒，最大时间约为179秒，出错率为1.26%。
+
 
 ## 页面一览
 
