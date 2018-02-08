@@ -25,7 +25,7 @@ module.exports = {
 	 */
     getMovieInfo: function (req,res,next) {
     	var genere = req.params.genere;
-	    var sql = "select * from Movie where genres like '%"+genere+"%' ORDER BY rating DESC limit 0,6; ";
+	    var sql = "select * from movie where genres like '%"+genere+"%' order by rating desc limit 0,6; ";
 	    sequelize.query(sql).spread((result, metadata) => {
 		    res.send(result);
 	    });
@@ -38,7 +38,7 @@ module.exports = {
 	 */
 	getMovieRelatedInfo: function (req, res, next) {
 		var movieRelatedInfo = req.params.movieRelatedInfo;
-		var sql = "select * from Movie where CONCAT(title,original_title,directors,casts) like '%"+movieRelatedInfo+"%' ";
+		var sql = "select * from movie where concat(title,original_title,directors,casts) like '%"+movieRelatedInfo+"%' ";
 		sequelize.query(sql).spread((result, metadata) => {
 			res.render('User/relatedMovieList',{
 				result:result,

@@ -17,10 +17,13 @@ module.exports = function (app) {
 
     // 所有电影页面
 	app.get('/allMovie',controllers.user.allMovieController.getInfo);
+	// 根据电影剧情和排序方式分类
 	app.get('/allMovie/getInfo/:genere/:other',controllers.user.allMovieController.getAll);
+	// API 根据剧情和电影名搜索
+	app.get('/allMovie/getAllByGenereAndMovieRelatedInfo/:genere/:movieRelatedInfo',controllers.user.allMovieController.getAllByGenereAndMovieRelatedInfo);
 
 
-    // 电影详情页面
+    // API 电影详情页面
 	app.get('/movieInfo/:movieInfoId',controllers.user.movieInfoController.getInfo);
 	// 获取推荐电影列表
 	app.get('/movieInfo/getRecommendMovieList/:movieInfoId',controllers.user.movieInfoController.getRecommendMovieList);
@@ -52,7 +55,7 @@ module.exports = function (app) {
 
 	// 获取电影分类页面
 	app.get('/admin/movieCategory',controllers.admin.movieCategoryManagementController.getInfo);
-	// 获取电影分类列表
+	// API 获取电影分类列表
 	app.get('/admin/movieCategory/getMovieCategoryList',controllers.admin.movieCategoryManagementController.getMovieCategoryList);
 	// 删除电影分类
 	app.get('/admin/movieCategory/deleteById/:categoryId',controllers.admin.movieCategoryManagementController.deleteById);

@@ -23,21 +23,36 @@ module.exports = {
 		var genere = req.params.genere;
 		var other = req.params.other;
 		if (other == "year"){
-			var sql = "select * from Movie where genres like '%"+genere+"%' ORDER BY year DESC; ";
+			var sql = "select * from movie where genres like '%"+genere+"%' order by rating desc; ";
 			sequelize.query(sql).spread((result, metadata) => {
 				res.send(result);
 			});
 		} else if (other == "rating"){
-			var sql = "select * from Movie where genres like '%"+genere+"%' ORDER BY rating DESC; ";
+			var sql = "select * from movie where genres like '%"+genere+"%' order by rating desc; ";
 			sequelize.query(sql).spread((result, metadata) => {
 				res.send(result);
 			});
 		} else {
-			var sql = "select * from Movie where genres like '%"+genere+"%';";
+			var sql = "select * from movie where genres like '%"+genere+"%';";
 			sequelize.query(sql).spread((result, metadata) => {
 				res.send(result);
 			});
 		}
 
-	}
+	},
+    /**
+	 * 支持类别和电影名获取电影列表
+     * @param req
+     * @param res
+     * @param next
+     */
+    getAllByGenereAndMovieRelatedInfo: function (req, res, next) {
+        var genere = req.params.genere;
+        var movieRelatedInfo = req.params.movieRelatedInfo;
+
+        var sql = "select * from movie where genres like '%"+genere+"%' and title like '%"+ movieRelatedInfo +"%'; ";
+        sequelize.query(sql).spread((result, metadata) => {
+            res.send(result);
+        });
+    }
 };

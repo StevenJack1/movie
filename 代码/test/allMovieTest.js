@@ -29,5 +29,16 @@ describe('所有电影页面', function () {
 			});
 	});
 
-
+    it('选择类型和电影名获取电影列表', function (done) {
+        var genere = "剧情";            // 可以换成爱情/犯罪/喜剧 等等
+        var movieRelatedInfo = "肖";
+        request(app)
+            .get("/allMovie/getAllByGenereAndMovieRelatedInfo/" + genere + "/" + movieRelatedInfo)
+            .expect(200)
+            .end(function(err, res){
+                if (err) throw err;
+                should.exist(res.text);
+                done();
+            });
+    });
 });

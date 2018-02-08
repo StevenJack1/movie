@@ -17,21 +17,21 @@
     "ejs": "~2.5.7",
     "express": "~4.15.5",
     "istanbul-harmony": "*",
-    "jquery": "^3.2.1",
+    "jquery": "^3.3.1",
     "kraken-js": "^2.2.0",
     "marked": "^0.3.12",
     "mocha": "^5.0.0",
     "mocha-lcov-reporter": "*",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
-    "mysql2": "^1.5.1",
-    "sequelize": "^4.29.2",
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.33.0",
     "serve-favicon": "~2.4.5",
     "should": "*",
     "supertest": "*"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "jasmine": "^2.6.0"
+    "jasmine": "^2.99.0"
   }
 }
